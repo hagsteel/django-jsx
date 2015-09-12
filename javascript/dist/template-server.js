@@ -19,10 +19,6 @@ var server = _net2["default"].createServer(function (socket) {
         socket.write(renderedTemplate);
         socket.end();
     });
-
-    socket.on("end", function (x) {
-        console.log("ended");
-    });
 });
 
 var serve = function serve() {

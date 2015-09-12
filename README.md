@@ -4,7 +4,7 @@ Requires Django 1.8 (because you want to use multiple template engines)
 
 ## Installation
 
-    Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
+Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
 
     TEMPLATES = [
         ...

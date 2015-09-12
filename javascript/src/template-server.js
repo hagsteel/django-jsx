@@ -10,10 +10,6 @@ const server = net.createServer((socket) => {
         socket.write(renderedTemplate);
         socket.end();
     });
-
-    socket.on("end", (x) => {
-        console.log('ended');
-    });
 });
 
 
