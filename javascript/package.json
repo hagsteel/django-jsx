@@ -1,0 +1,14 @@
+{
+    "name": "django-jsx",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "babel ./src --out-dir ./dist/"
+    },
+    "author": "Jonas Hagstedt <hagstedt@gmail.com> (https://github.com/jonashagstedt)",
+    "license": "BSD",
+    "dependencies": {
+        "react": "^0.13.3"
+    }
+}
