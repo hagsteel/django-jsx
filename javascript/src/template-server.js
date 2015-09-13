@@ -5,10 +5,14 @@ import {renderer} from "./renderer/tempate-renderer";
 
 const server = net.createServer((socket) => {
     socket.on("data", (data) => {
-        const obj = JSON.parse(data.toString());
-        const renderedTemplate = renderer.render(obj.template, obj.context, obj.render_static);
-        socket.write(renderedTemplate);
-        socket.end();
+        try {
+            const obj = JSON.parse(data.toString());
+            const renderedTemplate = renderer.render(obj.template, obj.context, obj.render_static);
+            socket.write(renderedTemplate);
+            socket.end();
+        } catch (ex) {
+            console.log(ex.stack);
+        }
     });
 
 });
