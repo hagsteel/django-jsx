@@ -4,12 +4,8 @@ from django.template.backends.base import BaseEngine
 from django.template.backends.utils import csrf_input_lazy, csrf_token_lazy, csrf_input
 from django.template.engine import Engine, _dirs_undefined
 
-from ..server.template_server import TemplateServer
 from ..client.template_client import TemplateClient
 from django_jsx.template.engine import JsxEngine
-
-# template_server = TemplateServer()
-# template_server.start()
 
 
 class JsxTemplates(BaseEngine):

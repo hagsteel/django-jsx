@@ -23,7 +23,10 @@ var server = _net2["default"].createServer(function (socket) {
 
 var serve = function serve() {
     var socketPath = "/tmp/template-server.sock";
-    _fs2["default"].unlinkSync(socketPath);
+    try {
+        // Delete stale socket
+        _fs2["default"].unlinkSync(socketPath);
+    } catch (ex) {}
 
     server.listen(socketPath, function () {
         console.log("Template server running");
@@ -31,3 +34,5 @@ var serve = function serve() {
 };
 
 serve();
+
+// Nothing to be done here

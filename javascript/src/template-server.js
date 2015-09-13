@@ -10,12 +10,18 @@ const server = net.createServer((socket) => {
         socket.write(renderedTemplate);
         socket.end();
     });
+
 });
 
 
 const serve = () => {
     const socketPath = "/tmp/template-server.sock";
-    fs.unlinkSync(socketPath);
+    try {
+        // Delete stale socket
+        fs.unlinkSync(socketPath);
+    } catch(ex) {
+        // Nothing to be done here
+    }
 
     server.listen(socketPath, () => {
         console.log('Template server running');
