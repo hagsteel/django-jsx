@@ -23,7 +23,14 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
 
 ## Usage
 
-*Note* ES6 templates needs to be transpiled as babel-node is not for production use
+*Note* ES6 templates needs to be transpiled as babel-node is not for production use.
+
+
+In a template:
+
+    {% load jsx %}
+    ...
+    {% include_jsx 'foo.js' bar='hello' baz='world' %}
 
 
 ## TODO
