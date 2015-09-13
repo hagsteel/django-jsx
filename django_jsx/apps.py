@@ -2,6 +2,7 @@ from django.apps import AppConfig
 from .server.template_server import TemplateServer
 import atexit
 
+
 template_server = TemplateServer()
 
 class DjangoJsxConfig(AppConfig):
@@ -16,6 +17,5 @@ def kill_server():
 
 
 template_server.start()
-print('Start template server')
 
 atexit.register(kill_server)
