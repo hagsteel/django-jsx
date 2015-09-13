@@ -33,6 +33,27 @@ In a template:
     {% include_jsx 'foo.js' bar='hello' baz='world' %}
 
 
+## Additional info
+
+If you see the warning:
+
+> Warning: render(): Target node has markup rendered by React, but there are unrelated nodes as well. This is most commonly caused by white-space inserted around server-rendered markup
+
+Remove any white space around the element surrounding the `include_jsx` output.
+
+e.g
+
+change
+
+    <div id="stuff">
+        {% include_jsx 'something.js' data=data %}
+    </div>
+
+to
+
+    <div id="stuff">{% include_jsx 'something.js' data=data %}</div>
+
+
 ## TODO
 
 *  Error reporting
