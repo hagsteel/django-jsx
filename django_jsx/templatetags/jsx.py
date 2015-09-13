@@ -20,6 +20,6 @@ def _get_template_path(template_name):
 
 
 @register.simple_tag(takes_context=True)
-def include_jsx(context, template_name):
+def include_jsx(context, template_name, **kwargs):
     template_path = _get_template_path(template_name)
-    return render_template(template_path, {})
+    return render_template(template_path, kwargs)
