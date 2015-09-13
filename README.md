@@ -1,6 +1,8 @@
 # Django JSX template engine
 
-Requires Django 1.8 (because you want to use multiple template engines)
+Requires Django 1.8 (because you want to use multiple template engines).
+
+*Note* The server has to be restarted for template updates as the templates are cached on the template server.
 
 ## Installation
 
@@ -22,3 +24,9 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
 ## Usage
 
 *Note* ES6 templates needs to be transpiled as babel-node is not for production use
+
+
+## TODO
+
+*  Error reporting
+*  Template exceptions

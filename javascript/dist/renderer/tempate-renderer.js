@@ -14,8 +14,14 @@ var _templateLoader = require("./template-loader");
 
 var renderer = {
     render: function render(templatePath, context) {
+        var renderStatic = arguments[2] === undefined ? false : arguments[2];
+
         var Component = _templateLoader.loader.load(templatePath);
-        return _react2["default"].renderToString(Component(context));
+        if (renderStatic === true) {
+            return _react2["default"].renderToStaticMarkup(Component(context));
+        } else {
+            return _react2["default"].renderToString(Component(context));
+        }
     }
 };
 

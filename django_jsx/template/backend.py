@@ -46,5 +46,4 @@ class JsxTemplate(object):
             context['csrf_token'] = get_token(request)
 
         client = TemplateClient()
-        client.connect()
-        return client.render_template(self.template_path, context)
+        return client.render_template(self.template_path, context, True)
