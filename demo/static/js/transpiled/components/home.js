@@ -22,28 +22,35 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
-var About = (function (_Master) {
-    function About() {
-        _classCallCheck(this, About);
+var Home = (function (_Master) {
+    function Home(props) {
+        _classCallCheck(this, Home);
 
-        _get(Object.getPrototypeOf(About.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
+        this.state = {};
     }
 
-    _inherits(About, _Master);
+    _inherits(Home, _Master);
 
-    _createClass(About, [{
+    _createClass(Home, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.setState({ extra: "foo" });
+        }
+    }, {
         key: "content",
         value: function content() {
             return _react2["default"].createElement(
                 "h1",
                 null,
-                "Home"
+                "Home ",
+                this.state.extra
             );
         }
     }]);
 
-    return About;
+    return Home;
 })(_master2["default"]);
 
-exports["default"] = About;
+exports["default"] = Home;
 module.exports = exports["default"];

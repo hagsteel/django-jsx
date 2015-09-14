@@ -4,7 +4,6 @@ import React from "react";
 export default class Master extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
     }
 
     render() {

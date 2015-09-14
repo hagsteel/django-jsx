@@ -23,7 +23,6 @@ var Master = (function (_React$Component) {
         _classCallCheck(this, Master);
 
         _get(Object.getPrototypeOf(Master.prototype), "constructor", this).call(this, props);
-        console.log(props);
     }
 
     _inherits(Master, _React$Component);
