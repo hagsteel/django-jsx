@@ -10,10 +10,6 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _resolve = require("resolve");
-
-var _resolve2 = _interopRequireDefault(_resolve);
-
 var loader = {
     load: function load(templatePath) {
         var template = require(templatePath);
