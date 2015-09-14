@@ -4,13 +4,14 @@ import React from "react";
 export default class Master extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
     }
 
     render() {
         return (
             <html>
                 <head>
-                    <meta charset="UTF-8" />
+                    <meta charSet="UTF-8" />
                     <title></title>
                 </head>
 

@@ -23,6 +23,7 @@ var Master = (function (_React$Component) {
         _classCallCheck(this, Master);
 
         _get(Object.getPrototypeOf(Master.prototype), "constructor", this).call(this, props);
+        console.log(props);
     }
 
     _inherits(Master, _React$Component);
@@ -36,7 +37,7 @@ var Master = (function (_React$Component) {
                 _react2["default"].createElement(
                     "head",
                     null,
-                    _react2["default"].createElement("meta", { charset: "UTF-8" }),
+                    _react2["default"].createElement("meta", { charSet: "UTF-8" }),
                     _react2["default"].createElement("title", null)
                 ),
                 _react2["default"].createElement("html", { lang: this.props.language }),

@@ -13,5 +13,20 @@
     "license": "BSD",
     "dependencies": {
         "react": "^0.13.3"
+    },
+    "browserify": {
+        "transform": [
+            [
+                "babelify",
+                {
+                    "blacklist": [
+                        "regenerator"
+                    ]
+                }
+            ]
+        ]
+    },
+    "devDependencies": {
+        "babelify": "^6.3.0"
     }
 }
