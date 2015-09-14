@@ -56,6 +56,7 @@ to
 
 ## TODO
 
+*  Build the server into one script file
 *  Error reporting
 *  Template exceptions
 *  Mention ES6 help: babel src --out-dir ./transpiled --watch 
