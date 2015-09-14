@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "babel ./src --out-dir ./dist/"
+        "build": "babel ./src --out-dir ./dist/",
+        "watch": "babel ./src --out-dir ./dist/ --watch"
     },
     "author": "Jonas Hagstedt <hagstedt@gmail.com> (https://github.com/jonashagstedt)",
     "license": "BSD",

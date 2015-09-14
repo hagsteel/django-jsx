@@ -1,0 +1,16 @@
+{
+    "name": "static",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build-vendor": "browserify -r react -o ./dist/vendor.js",
+        "watch": "watchify -x react ./index.js -o ./dist/demo.js -v -d"
+    },
+    "author": "Jonas Hagstedt <hagstedt@gmail.com> (https://github.com/jonashagstedt)",
+    "license": "BSD",
+    "dependencies": {
+        "react": "^0.13.3"
+    }
+}

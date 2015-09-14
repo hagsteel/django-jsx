@@ -58,3 +58,4 @@ to
 
 *  Error reporting
 *  Template exceptions
+*  Mention ES6 help: babel src --out-dir ./transpiled --watch 

@@ -1,5 +1,5 @@
 """
-Return only the filepath
+Return only the file path
 """
 from os.path import exists
 from django.template.base import TemplateDoesNotExist
@@ -24,7 +24,7 @@ class JsxLoader(Loader):
 
     def load_template(self, template_name, template_dirs=None):
         """
-        Only the filepath is returned
+        Only the file path is returned
         """
         filepath, display_name = self.load_template_source(template_name, template_dirs)
         return filepath, template_name
