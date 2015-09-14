@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build-vendor": "browserify -r react -o ./dist/vendor.js",
-        "watch": "watchify -x react ./index.js -o ./dist/demo.js -v -d"
+        "watch": "watchify -x react ./index.js -o ./dist/demo.js -v -d",
+        "transpile": "babel src --out-dir ./transpiled --watch"
     },
     "author": "Jonas Hagstedt <hagstedt@gmail.com> (https://github.com/jonashagstedt)",
     "license": "BSD",
