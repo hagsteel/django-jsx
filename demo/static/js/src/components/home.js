@@ -2,9 +2,6 @@ import React from "react";
 import Master from "./master";
 
 
-var colors = ['orange', 'red', 'blue', 'purple'];
-const Calendar = require('react-widgets').Calendar
-
 export default class Home extends Master {
     constructor (props) {
         super(props);
@@ -19,7 +16,7 @@ export default class Home extends Master {
         return (
             <div>
                 <h1>Home</h1>
-                <Calendar />
+                <p>This is the home view</p>
             </div>
         )
     }

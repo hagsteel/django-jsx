@@ -22,9 +22,6 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
-var colors = ["orange", "red", "blue", "purple"];
-var Calendar = require("react-widgets").Calendar;
-
 var Home = (function (_Master) {
     function Home(props) {
         _classCallCheck(this, Home);
@@ -49,7 +46,11 @@ var Home = (function (_Master) {
                     null,
                     "Home"
                 ),
-                _react2["default"].createElement(Calendar, null)
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "This is the home view"
+                )
             );
         }
     }]);
