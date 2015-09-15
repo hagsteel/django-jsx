@@ -59,6 +59,47 @@ e.g
     module.exports = React.Component { ... }
 
 
+## Example React component as template
+
+A lot of this code was based on this: https://github.com/mhart/react-server-example
+
+To use this example template as the sole base template (e.g no .html templates at all)
+just include the required `<html></body>` etc. tags.
+    
+    import React from "react";
+    import App from "../app"
+    
+    export default class Base extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+    
+        jsonProps() {
+            // This allows us to ensure that the client and the server
+            // have the same data
+            return {__html: "window.props=" + JSON.stringify(this.props)};
+        }
+    
+        children() {
+            // This will render the <App /> component
+            // Note the use of `React.renderToString` as this will
+            // ensure the component is rendered with react ids (unlike this component which is static)
+            const app = React.createFactory(App);
+            return {__html: React.renderToString(app(this.props))};
+        }
+    
+        render() {
+            return (
+                <div>
+                    <h1>A base page</h1>
+                    <div id="app" dangerouslySetInnerHTML={this.children()}></div>
+                    <script type="text/javascript" dangerouslySetInnerHTML={this.jsonProps()} />
+                </div>
+            )
+        }
+    }
+
+
 ## Custom template renderer
 
 Specify the path to the renderer in settings:
