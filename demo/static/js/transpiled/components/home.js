@@ -22,6 +22,9 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
+var colors = ["orange", "red", "blue", "purple"];
+var Calendar = require("react-widgets").Calendar;
+
 var Home = (function (_Master) {
     function Home(props) {
         _classCallCheck(this, Home);
@@ -34,17 +37,19 @@ var Home = (function (_Master) {
 
     _createClass(Home, [{
         key: "componentDidMount",
-        value: function componentDidMount() {
-            this.setState({ extra: "foo" });
-        }
+        value: function componentDidMount() {}
     }, {
         key: "content",
         value: function content() {
             return _react2["default"].createElement(
-                "h1",
+                "div",
                 null,
-                "Home ",
-                this.state.extra
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    "Home"
+                ),
+                _react2["default"].createElement(Calendar, null)
             );
         }
     }]);

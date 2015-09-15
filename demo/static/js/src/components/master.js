@@ -11,7 +11,10 @@ export default class Master extends React.Component {
             <html>
                 <head>
                     <meta charSet="UTF-8" />
-                    <title></title>
+                    <link href="/static/css/core.css" media="all" rel="stylesheet" />
+                    <link href="/static/css/react-widgets.css" media="all" rel="stylesheet" />
+                    <link href="/static/css/variables.css" media="all" rel="stylesheet" />
+                    <title>Foo</title>
                 </head>
 
                 <html lang={this.props.language} />
