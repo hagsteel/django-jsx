@@ -22,6 +22,10 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
+var _about = require("./about");
+
+var _about2 = _interopRequireDefault(_about);
+
 var isNode = typeof window === "undefined";
 
 var Home = (function (_Master) {
@@ -39,7 +43,7 @@ var Home = (function (_Master) {
     }, {
         key: "click",
         value: function click(e) {
-            alert("clicked");
+            _react2["default"].render(_react2["default"].createElement(_about2["default"], null), document);
         }
     }, {
         key: "content",
@@ -70,6 +74,15 @@ var Home = (function (_Master) {
                     "p",
                     null,
                     this.props.date
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                        "a",
+                        { href: "/about/" },
+                        "About"
+                    )
                 )
             );
         }
