@@ -48,6 +48,18 @@ var Master = (function (_React$Component) {
         key: "render",
         value: function render() {
             return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    "Master page"
+                ),
+                _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() }),
+                _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() })
+            );
+
+            return _react2["default"].createElement(
                 "html",
                 null,
                 _react2["default"].createElement(
