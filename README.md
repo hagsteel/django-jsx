@@ -1,8 +1,9 @@
-# Django JSX template engine
+# Django JavaScript template engine
 
 Requires Django 1.8 (because you want to use multiple template engines).
 
 *Note* The server has to be restarted for template updates as the templates are cached on the template server.
+
 
 ## Installation
 
@@ -21,16 +22,24 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
     ]
     
 
+
 ## Usage
 
-*Note* ES6 templates needs to be transpiled as babel-node is not for production use.
+*Note* ES6 templates needs to be "transpiled" as babel-node is not for production use.
 
+
+### Using as part of a Django template
 
 In a template:
 
     {% load jsx %}
     ...
     {% include_jsx 'foo.js' bar='hello' baz='world' %}
+
+
+### Pure React components as templates
+
+
 
 
 ## Additional info

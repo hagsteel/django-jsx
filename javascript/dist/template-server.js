@@ -10,13 +10,13 @@ var _fs = require("fs");
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _rendererTempateRenderer = require("./renderer/tempate-renderer");
+var _rendererReactReactTempateRendererJs = require("./renderer/react/react-tempate-renderer.js");
 
 var server = _net2["default"].createServer(function (socket) {
     socket.on("data", function (data) {
         try {
             var obj = JSON.parse(data.toString());
-            var renderedTemplate = _rendererTempateRenderer.renderer.render(obj.template, obj.context, obj.render_static);
+            var renderedTemplate = _rendererReactReactTempateRendererJs.renderer.render(obj.template, obj.context);
             socket.write(renderedTemplate);
         } catch (ex) {
             console.log(ex.stack);

@@ -1,16 +1,15 @@
 from django import template
 from django.conf import settings
-from django_jsx.client.template_client import render_template
-from django_jsx.template.backend import JsxTemplate
-from django_jsx.template.loaders import JsxLoader
+from django_jsx.template.backend import JsTemplate
+from django_jsx.template.loaders import JsLoader
 
 register = template.Library()
-loader = JsxLoader(engine=None)
+loader = JsLoader(engine=None)
 
 
 def _get_template_dirs():
     for t in settings.TEMPLATES:
-        if t['BACKEND'] == 'django_jsx.template.backend.JsxTemplates':
+        if t['BACKEND'] == 'django_jsx.template.backend.JsTemplates':
             return t['DIRS']
     return None
 
@@ -21,9 +20,7 @@ def _get_template_path(template_name):
 
 
 @register.simple_tag(takes_context=True)
-def include_jsx(context, template_name, **kwargs):
+def include_js(context, template_name, **kwargs):
     template_path = _get_template_path(template_name)
-    template = JsxTemplate(template_path)
-    # import ipdb;ipdb.set_trace()
+    template = JsTemplate(template_path)
     return template.render(kwargs)
-    # return render_template(template_path, kwargs)

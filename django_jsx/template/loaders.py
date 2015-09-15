@@ -6,7 +6,7 @@ from django.template.base import TemplateDoesNotExist
 from django.template.loaders.filesystem import Loader
 
 
-class JsxLoader(Loader):
+class JsLoader(Loader):
     def load_template_source(self, template_name, template_dirs=None):
         tried = []
         for filepath in self.get_template_sources(template_name, template_dirs):

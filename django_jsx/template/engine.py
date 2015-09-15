@@ -2,15 +2,15 @@ from django.template import Engine
 _dirs_undefined = object()
 
 
-class JsxEngine(Engine):
+class JsEngine(Engine):
     def __init__(self, dirs=None, app_dirs=False,
                  allowed_include_roots=None, context_processors=None,
                  debug=False, loaders=None, string_if_invalid='',
                  file_charset='utf-8'):
 
-        # Set the default loader to the JSX loader
+        # Set the default loader to the JS loader
         if loaders is None:
-            loaders = ['django_jsx.template.loaders.JsxLoader']
+            loaders = ['django_jsx.template.loaders.JsLoader']
             if app_dirs:
                 loaders += ['django.template.loaders.app_directories.Loader']
 

@@ -69,7 +69,7 @@ TEMPLATES = [
         },
     },
     {
-        'BACKEND': 'django_jsx.template.backend.JsxTemplates',
+        'BACKEND': 'django_jsx.template.backend.JsTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'static/js')
         ]

@@ -1,13 +1,13 @@
 from django.middleware.csrf import get_token
 from django.template.backends.base import BaseEngine
-from django.template.backends.utils import csrf_input_lazy, csrf_token_lazy, csrf_input
-from django.template.engine import Engine, _dirs_undefined
+from django.template.backends.utils import csrf_input
+from django.template.engine import _dirs_undefined
 
 from ..client.template_client import TemplateClient
-from django_jsx.template.engine import JsxEngine
+from django_jsx.template.engine import JsEngine
 
 
-class JsxTemplates(BaseEngine):
+class JsTemplates(BaseEngine):
     # Name of the subdirectory containing the templates for this engine
     # inside an installed application.
     app_dirname = 'foobar'
@@ -16,13 +16,13 @@ class JsxTemplates(BaseEngine):
         params = params.copy()
         options = params.pop('OPTIONS').copy()
         super().__init__(params)
-        self.engine = JsxEngine(self.dirs, self.app_dirs, **options)
+        self.engine = JsEngine(self.dirs, self.app_dirs, **options)
 
     def get_template(self, template_name, dirs=_dirs_undefined):
-        return JsxTemplate(self.engine.get_template(template_name))
+        return JsTemplate(self.engine.get_template(template_name))
 
 
-class JsxTemplate(object):
+class JsTemplate(object):
     def __init__(self, template_path):
         self.template_path = template_path
 
@@ -36,7 +36,6 @@ class JsxTemplate(object):
                 view = context.pop('view')
                 if hasattr(view, 'render_static'):
                     render_static = view.render_static
-            # context['request'] = request
             context['csrf_input'] = csrf_input(request)
             context['csrf_token'] = get_token(request)
 

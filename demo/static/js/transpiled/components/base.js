@@ -41,8 +41,6 @@ var Base = (function (_React$Component) {
         value: function children() {
             var app = _react2["default"].createFactory(_app2["default"]);
             return { __html: _react2["default"].renderToString(app(this.props)) };
-
-            //return {__html: this.props.children};
         }
     }, {
         key: "render",
@@ -57,38 +55,6 @@ var Base = (function (_React$Component) {
                 ),
                 _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() }),
                 _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() })
-            );
-
-            return _react2["default"].createElement(
-                "html",
-                null,
-                _react2["default"].createElement(
-                    "head",
-                    null,
-                    _react2["default"].createElement("meta", { charSet: "UTF-8" }),
-                    _react2["default"].createElement(
-                        "title",
-                        null,
-                        "Foo"
-                    )
-                ),
-                _react2["default"].createElement(
-                    "body",
-                    null,
-                    _react2["default"].createElement(
-                        "div",
-                        null,
-                        _react2["default"].createElement(
-                            "h1",
-                            null,
-                            "Master page"
-                        ),
-                        _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() })
-                    ),
-                    _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() }),
-                    _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/vendor.js" }),
-                    _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/demo.js" })
-                )
             );
         }
     }]);
