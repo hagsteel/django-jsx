@@ -1,41 +1,30 @@
 import React from "react";
 import Master from "./master";
 
+const isNode = typeof window === 'undefined';
 
-export default class Home extends React.Component {
+
+export default class Home extends Master {
     constructor (props) {
         super(props);
-        console.log(props);
     }
 
     componentDidMount () {
+
     }
 
     click(e) {
         alert("clicked");
     }
 
-    render () {
-        const isNode = typeof window === 'undefined';
-
-        //if (isNode === false) {
-        //    return (
-        //        <div>
-        //            <h1>Home</h1>
-        //            <p>This is the home view</p>
-        //            <p>{this.props.date}</p>
-        //            <p><button onClick={this.click}>Click me</button></p>
-        //        </div>
-        //    )
-        //}
-
+    content () {
         return (
-            <Master>
+            <div>
                 <h1>Home</h1>
                 <p>This is the home view</p>
-                <p>{this.props.date}</p>
                 <p><button onClick={this.click}>Click me</button></p>
-            </Master>
+                <p>{this.props.date}</p>
+            </div>
         )
     }
 }

@@ -18,6 +18,8 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var isNode = typeof window === "undefined";
+
 var Master = (function (_React$Component) {
     function Master(props) {
         _classCallCheck(this, Master);
@@ -31,6 +33,11 @@ var Master = (function (_React$Component) {
         key: "content",
         value: function content() {
             return "";
+        }
+    }, {
+        key: "stringify",
+        value: function stringify() {
+            return { __html: "window.props=" + JSON.stringify(this.props) };
         }
     }, {
         key: "render",
@@ -48,7 +55,6 @@ var Master = (function (_React$Component) {
                         "Foo"
                     )
                 ),
-                _react2["default"].createElement("html", { lang: this.props.language }),
                 _react2["default"].createElement(
                     "body",
                     null,
@@ -63,9 +69,10 @@ var Master = (function (_React$Component) {
                         _react2["default"].createElement(
                             "div",
                             { id: "app" },
-                            this.props.children
+                            this.content()
                         )
                     ),
+                    _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() }),
                     _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/vendor.js" }),
                     _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/demo.js" })
                 )

@@ -1,5 +1,7 @@
 import React from "react";
 
+const isNode = typeof window === 'undefined';
+
 
 export default class Master extends React.Component {
     constructor(props) {
@@ -10,6 +12,10 @@ export default class Master extends React.Component {
         return "";
     }
 
+    stringify() {
+        return {__html: "window.props=" + JSON.stringify(this.props)};
+    }
+
     render() {
         return (
             <html>
@@ -18,13 +24,13 @@ export default class Master extends React.Component {
                     <title>Foo</title>
                 </head>
 
-                <html lang={this.props.language} />
                 <body>
                     <div>
                         <h1>Master page</h1>
-                        <div id="app">{this.props.children}</div>
+                        <div id="app">{this.content()}</div>
                     </div>
 
+                    <script type="text/javascript" dangerouslySetInnerHTML={this.stringify()} />
                     <script type="text/javascript" src="/static/js/dist/vendor.js"></script>
                     <script type="text/javascript" src="/static/js/dist/demo.js"></script>
                 </body>

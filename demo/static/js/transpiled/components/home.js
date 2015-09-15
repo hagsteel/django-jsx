@@ -22,15 +22,16 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
-var Home = (function (_React$Component) {
+var isNode = typeof window === "undefined";
+
+var Home = (function (_Master) {
     function Home(props) {
         _classCallCheck(this, Home);
 
         _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
-        console.log(props);
     }
 
-    _inherits(Home, _React$Component);
+    _inherits(Home, _Master);
 
     _createClass(Home, [{
         key: "componentDidMount",
@@ -41,23 +42,10 @@ var Home = (function (_React$Component) {
             alert("clicked");
         }
     }, {
-        key: "render",
-        value: function render() {
-            var isNode = typeof window === "undefined";
-
-            //if (isNode === false) {
-            //    return (
-            //        <div>
-            //            <h1>Home</h1>
-            //            <p>This is the home view</p>
-            //            <p>{this.props.date}</p>
-            //            <p><button onClick={this.click}>Click me</button></p>
-            //        </div>
-            //    )
-            //}
-
+        key: "content",
+        value: function content() {
             return _react2["default"].createElement(
-                _master2["default"],
+                "div",
                 null,
                 _react2["default"].createElement(
                     "h1",
@@ -72,23 +60,23 @@ var Home = (function (_React$Component) {
                 _react2["default"].createElement(
                     "p",
                     null,
-                    this.props.date
-                ),
-                _react2["default"].createElement(
-                    "p",
-                    null,
                     _react2["default"].createElement(
                         "button",
                         { onClick: this.click },
                         "Click me"
                     )
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    this.props.date
                 )
             );
         }
     }]);
 
     return Home;
-})(_react2["default"].Component);
+})(_master2["default"]);
 
 exports["default"] = Home;
 module.exports = exports["default"];

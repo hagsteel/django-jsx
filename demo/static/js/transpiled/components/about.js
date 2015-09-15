@@ -22,6 +22,8 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
+var isNode = typeof window === "undefined";
+
 var About = (function (_Master) {
     function About(props) {
         _classCallCheck(this, About);
@@ -35,9 +37,20 @@ var About = (function (_Master) {
         key: "content",
         value: function content() {
             return _react2["default"].createElement(
-                "h1",
+                "div",
                 null,
-                "About"
+                _react2["default"].createElement(
+                    "h2",
+                    null,
+                    "About"
+                ),
+                this.props.data.map(function (d, i) {
+                    return _react2["default"].createElement(
+                        "p",
+                        { key: "p-" + i },
+                        d
+                    );
+                })
             );
         }
     }]);
