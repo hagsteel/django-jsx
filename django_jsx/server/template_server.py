@@ -1,4 +1,5 @@
 from subprocess import Popen
+from django.conf import settings
 import os
 import signal
 
@@ -16,7 +17,18 @@ class TemplateServer():
             os.path.dirname(__file__),
             '../../javascript/dist/'
         )
-        self.proc = Popen(['node', 'template-server.js'], cwd=cwd, preexec_fn=os.setsid)
+
+        renderer = 'default';
+        for template_setting in settings.TEMPLATES:
+            if template_setting.get('BACKEND') == 'django_jsx.template.backend.JsTemplates':
+                renderer = template_setting.get('RENDERER') or renderer
+
+        options = [
+            'debug={}'.format(settings.DEBUG),
+            'renderer={}'.format(renderer),
+        ]
+
+        self.proc = Popen(['node', 'template-server.js'] + options, cwd=cwd, preexec_fn=os.setsid)
 
 
     def terminate(self):

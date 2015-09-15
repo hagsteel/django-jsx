@@ -12,6 +12,22 @@ var _fs2 = _interopRequireDefault(_fs);
 
 var _rendererReactReactTempateRendererJs = require("./renderer/react/react-tempate-renderer.js");
 
+var getOptions = function getOptions() {
+    if (process.argv.length < 3) {
+        return {};
+    }
+
+    var options = {};
+    for (var i = 2; i < process.argv.length; i += 1) {
+        var opt = process.argv[i].split("=");
+        options[opt[0]] = opt[1];
+    }
+
+    console.log(options);
+};
+
+console.log(getOptions());
+
 var server = _net2["default"].createServer(function (socket) {
     socket.on("data", function (data) {
         try {

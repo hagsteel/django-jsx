@@ -3,6 +3,22 @@ import fs from "fs";
 import {renderer} from "./renderer/react/react-tempate-renderer.js"
 
 
+const getOptions = () => {
+    if (process.argv.length < 3) {
+        return {}
+    }
+
+    const options = {};
+    for (let i = 2; i < process.argv.length; i += 1) {
+        const opt = process.argv[i].split("=");
+        options[opt[0]] = opt[1];
+    }
+
+    console.log(options);
+};
+
+console.log(getOptions());
+
 const server = net.createServer((socket) => {
     socket.on("data", (data) => {
         try {
@@ -32,6 +48,9 @@ const serve = () => {
         console.log('Template server running');
     });
 };
+
+
+
 
 serve();
 

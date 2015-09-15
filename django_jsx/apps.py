@@ -9,13 +9,13 @@ class DjangoJsxConfig(AppConfig):
     name = 'django_jsx'
     verbose_name = "Django JSX"
 
+    def ready(self):
+        template_server.start()
 
 
 def kill_server():
     print('Closing template server')
     template_server.terminate()
 
-
-template_server.start()
 
 atexit.register(kill_server)

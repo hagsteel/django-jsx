@@ -70,6 +70,7 @@ TEMPLATES = [
     },
     {
         'BACKEND': 'django_jsx.template.backend.JsTemplates',
+        'RENDERER': os.path.join(BASE_DIR, 'custom_renderer/custom.js'),
         'DIRS': [
             os.path.join(BASE_DIR, 'static/js')
         ]
