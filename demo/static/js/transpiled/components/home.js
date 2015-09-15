@@ -18,20 +18,13 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-//import Master from "./master";
-
-var _about = require("./about");
-
-var _about2 = _interopRequireDefault(_about);
-
-var isNode = typeof window === "undefined";
-
 var Home = (function (_React$Component) {
     function Home(props) {
         _classCallCheck(this, Home);
 
         _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
         this.state = props;
+        console.log(this.state);
     }
 
     _inherits(Home, _React$Component);

@@ -15,7 +15,6 @@ export default class Master extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <html>
                 <head>

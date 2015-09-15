@@ -40,7 +40,6 @@ var Master = (function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            console.log(this.props);
             return _react2["default"].createElement(
                 "html",
                 null,

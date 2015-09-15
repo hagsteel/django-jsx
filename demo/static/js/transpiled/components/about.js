@@ -24,6 +24,7 @@ var About = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(About.prototype), "constructor", this).call(this, props);
         this.state = props;
+        console.log(this.state);
     }
 
     _inherits(About, _React$Component);
@@ -47,7 +48,14 @@ var About = (function (_React$Component) {
                         { href: "/", onClick: this.state.handleClick },
                         "Home"
                     )
-                )
+                ),
+                this.state.data.data.map(function (d, i) {
+                    return _react2["default"].createElement(
+                        "p",
+                        { key: "p-" + i },
+                        d
+                    );
+                })
             );
         }
     }]);
