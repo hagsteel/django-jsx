@@ -1,21 +1,18 @@
 import React from "react";
-import Master from "./master";
-
-const isNode = typeof window === 'undefined';
 
 
-export default class About extends Master {
-    constructor(props) {
+export default class About extends React.Component {
+    constructor (props) {
         super(props);
+        this.state = props;
+        console.log(this.state);
+
     }
 
-    content() {
+    render() {
         return (
             <div>
                 <h2>About</h2>
-                {this.props.data.map( (d, i) => {
-                    return <p key={"p-" + i}>{d}</p>
-                })}
             </div>
         )
     }

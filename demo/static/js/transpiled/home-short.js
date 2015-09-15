@@ -18,34 +18,78 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var About = (function (_React$Component) {
-    function About(props) {
-        _classCallCheck(this, About);
+var _master = require("./master");
 
-        _get(Object.getPrototypeOf(About.prototype), "constructor", this).call(this, props);
-        this.state = props;
-        console.log(this.state);
+var _master2 = _interopRequireDefault(_master);
+
+var _about = require("./about");
+
+var _about2 = _interopRequireDefault(_about);
+
+var isNode = typeof window === "undefined";
+
+var Home = (function (_Master) {
+    function Home(props) {
+        _classCallCheck(this, Home);
+
+        _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
     }
 
-    _inherits(About, _React$Component);
+    _inherits(Home, _Master);
 
-    _createClass(About, [{
-        key: "render",
-        value: function render() {
+    _createClass(Home, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {}
+    }, {
+        key: "click",
+        value: function click(e) {
+            _react2["default"].render(_react2["default"].createElement(_about2["default"], null), document);
+        }
+    }, {
+        key: "content",
+        value: function content() {
             return _react2["default"].createElement(
                 "div",
                 null,
                 _react2["default"].createElement(
-                    "h2",
+                    "h1",
                     null,
-                    "About"
+                    "Home"
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "This is the home view"
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                        "button",
+                        { onClick: this.click },
+                        "Click me"
+                    )
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    this.props.date
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                        "a",
+                        { href: "/about/" },
+                        "About"
+                    )
                 )
             );
         }
     }]);
 
-    return About;
-})(_react2["default"].Component);
+    return Home;
+})(_master2["default"]);
 
-exports["default"] = About;
+exports["default"] = Home;
 module.exports = exports["default"];

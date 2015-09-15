@@ -18,18 +18,21 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var About = (function (_React$Component) {
-    function About(props) {
-        _classCallCheck(this, About);
+var _about = require("./about");
 
-        _get(Object.getPrototypeOf(About.prototype), "constructor", this).call(this, props);
-        this.state = props;
-        console.log(this.state);
+var _about2 = _interopRequireDefault(_about);
+
+var Home = (function (_React$Component) {
+    function Home(props) {
+        _classCallCheck(this, Home);
+
+        _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
+        this.state = { data: props.data || [] };
     }
 
-    _inherits(About, _React$Component);
+    _inherits(Home, _React$Component);
 
-    _createClass(About, [{
+    _createClass(Home, [{
         key: "render",
         value: function render() {
             return _react2["default"].createElement(
@@ -39,13 +42,20 @@ var About = (function (_React$Component) {
                     "h2",
                     null,
                     "About"
-                )
+                ),
+                this.state.data.map(function (d, i) {
+                    return _react2["default"].createElement(
+                        "p",
+                        { key: "p-" + i },
+                        d
+                    );
+                })
             );
         }
     }]);
 
-    return About;
+    return Home;
 })(_react2["default"].Component);
 
-exports["default"] = About;
+exports["default"] = Home;
 module.exports = exports["default"];

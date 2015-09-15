@@ -18,9 +18,7 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _master = require("./master");
-
-var _master2 = _interopRequireDefault(_master);
+//import Master from "./master";
 
 var _about = require("./about");
 
@@ -28,26 +26,22 @@ var _about2 = _interopRequireDefault(_about);
 
 var isNode = typeof window === "undefined";
 
-var Home = (function (_Master) {
+var Home = (function (_React$Component) {
     function Home(props) {
         _classCallCheck(this, Home);
 
         _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
+        this.state = props;
     }
 
-    _inherits(Home, _Master);
+    _inherits(Home, _React$Component);
 
     _createClass(Home, [{
         key: "componentDidMount",
         value: function componentDidMount() {}
     }, {
-        key: "click",
-        value: function click(e) {
-            _react2["default"].render(_react2["default"].createElement(_about2["default"], null), document);
-        }
-    }, {
-        key: "content",
-        value: function content() {
+        key: "render",
+        value: function render() {
             return _react2["default"].createElement(
                 "div",
                 null,
@@ -64,23 +58,14 @@ var Home = (function (_Master) {
                 _react2["default"].createElement(
                     "p",
                     null,
-                    _react2["default"].createElement(
-                        "button",
-                        { onClick: this.click },
-                        "Click me"
-                    )
-                ),
-                _react2["default"].createElement(
-                    "p",
-                    null,
-                    this.props.date
+                    this.state.data.date
                 ),
                 _react2["default"].createElement(
                     "p",
                     null,
                     _react2["default"].createElement(
                         "a",
-                        { href: "/about/" },
+                        { href: "/about/", onClick: this.state.handleClick },
                         "About"
                     )
                 )
@@ -89,7 +74,7 @@ var Home = (function (_Master) {
     }]);
 
     return Home;
-})(_master2["default"]);
+})(_react2["default"].Component);
 
 exports["default"] = Home;
 module.exports = exports["default"];

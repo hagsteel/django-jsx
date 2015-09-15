@@ -7,28 +7,82 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _srcComponentsHome = require("./src/components/home");
+var _srcApp = require("./src/app");
 
-var _srcComponentsHome2 = _interopRequireDefault(_srcComponentsHome);
+var _srcApp2 = _interopRequireDefault(_srcApp);
 
-var _srcComponentsAbout = require("./src/components/about");
+var Component = _react2["default"].createFactory(_srcApp2["default"]);
 
-var _srcComponentsAbout2 = _interopRequireDefault(_srcComponentsAbout);
+_react2["default"].render(Component(window.props), document.getElementById("app"));
 
-function getComponent() {
-    switch (window.location.pathname) {
-        case "/":
-            return _srcComponentsHome2["default"];
-        case "/about/":
-            return _srcComponentsAbout2["default"];
+},{"./src/app":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/app.js","react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/app.js":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _routers = require("./routers");
+
+var _routers2 = _interopRequireDefault(_routers);
+
+var App = (function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App(props) {
+        _classCallCheck(this, App);
+
+        _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
+        this.updateUrl = this.updateUrl.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.state = { pathname: props.pathname || '/' };
     }
-}
 
-var Component = _react2["default"].createFactory(getComponent());
+    _createClass(App, [{
+        key: 'handleClick',
+        value: function handleClick(e) {
+            e.preventDefault();
+            window.history.pushState(null, null, e.target.pathname);
+            this.updateUrl(e.target.pathname);
+        }
+    }, {
+        key: 'updateUrl',
+        value: function updateUrl(pathname) {
+            this.setState({ pathname: pathname });
+        }
+    }, {
+        key: 'getPathName',
+        value: function getPathName() {
+            return this.state.pathname;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2['default'].createElement(_routers2['default'].getComponent(this.getPathName()), { data: this.props, handleClick: this.handleClick });
+        }
+    }]);
 
-_react2["default"].render(Component(window.props), document);
+    return App;
+})(_react2['default'].Component);
 
-},{"./src/components/about":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/about.js","./src/components/home":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/home.js","react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/about.js":[function(require,module,exports){
+exports['default'] = App;
+module.exports = exports['default'];
+
+},{"./routers":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/routers.js","react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/about.js":[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49,24 +103,20 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _master = require("./master");
-
-var _master2 = _interopRequireDefault(_master);
-
-var isNode = typeof window === 'undefined';
-
-var About = (function (_Master) {
-    _inherits(About, _Master);
+var About = (function (_React$Component) {
+    _inherits(About, _React$Component);
 
     function About(props) {
         _classCallCheck(this, About);
 
         _get(Object.getPrototypeOf(About.prototype), "constructor", this).call(this, props);
+        this.state = props;
+        console.log(this.state);
     }
 
     _createClass(About, [{
-        key: "content",
-        value: function content() {
+        key: "render",
+        value: function render() {
             return _react2["default"].createElement(
                 "div",
                 null,
@@ -74,25 +124,18 @@ var About = (function (_Master) {
                     "h2",
                     null,
                     "About"
-                ),
-                this.props.data.map(function (d, i) {
-                    return _react2["default"].createElement(
-                        "p",
-                        { key: "p-" + i },
-                        d
-                    );
-                })
+                )
             );
         }
     }]);
 
     return About;
-})(_master2["default"]);
+})(_react2["default"].Component);
 
 exports["default"] = About;
 module.exports = exports["default"];
 
-},{"./master":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/master.js","react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/home.js":[function(require,module,exports){
+},{"react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/home.js":[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -113,9 +156,7 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _master = require("./master");
-
-var _master2 = _interopRequireDefault(_master);
+//import Master from "./master";
 
 var _about = require("./about");
 
@@ -123,26 +164,22 @@ var _about2 = _interopRequireDefault(_about);
 
 var isNode = typeof window === 'undefined';
 
-var Home = (function (_Master) {
-    _inherits(Home, _Master);
+var Home = (function (_React$Component) {
+    _inherits(Home, _React$Component);
 
     function Home(props) {
         _classCallCheck(this, Home);
 
         _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
+        this.state = props;
     }
 
     _createClass(Home, [{
         key: "componentDidMount",
         value: function componentDidMount() {}
     }, {
-        key: "click",
-        value: function click(e) {
-            _react2["default"].render(_react2["default"].createElement(_about2["default"], null), document);
-        }
-    }, {
-        key: "content",
-        value: function content() {
+        key: "render",
+        value: function render() {
             return _react2["default"].createElement(
                 "div",
                 null,
@@ -159,23 +196,14 @@ var Home = (function (_Master) {
                 _react2["default"].createElement(
                     "p",
                     null,
-                    _react2["default"].createElement(
-                        "button",
-                        { onClick: this.click },
-                        "Click me"
-                    )
-                ),
-                _react2["default"].createElement(
-                    "p",
-                    null,
-                    this.props.date
+                    this.state.data.date
                 ),
                 _react2["default"].createElement(
                     "p",
                     null,
                     _react2["default"].createElement(
                         "a",
-                        { href: "/about/" },
+                        { href: "/about/", onClick: this.state.handleClick },
                         "About"
                     )
                 )
@@ -184,99 +212,43 @@ var Home = (function (_Master) {
     }]);
 
     return Home;
-})(_master2["default"]);
+})(_react2["default"].Component);
 
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./about":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/about.js","./master":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/master.js","react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/master.js":[function(require,module,exports){
+},{"./about":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/about.js","react":"react"}],"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/routers.js":[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _componentsAbout = require("./components/about");
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _componentsAbout2 = _interopRequireDefault(_componentsAbout);
 
-var _react = require("react");
+var _componentsHome = require("./components/home");
 
-var _react2 = _interopRequireDefault(_react);
+var _componentsHome2 = _interopRequireDefault(_componentsHome);
 
-var isNode = typeof window === 'undefined';
-
-var Master = (function (_React$Component) {
-    _inherits(Master, _React$Component);
-
-    function Master(props) {
-        _classCallCheck(this, Master);
-
-        _get(Object.getPrototypeOf(Master.prototype), "constructor", this).call(this, props);
+var router = {
+    getComponent: function getComponent(pathname) {
+        switch (pathname) {
+            case "/":
+                return _componentsHome2["default"];
+            case "/about/":
+                return _componentsAbout2["default"];
+            default:
+                return _componentsHome2["default"];
+        }
     }
+};
 
-    _createClass(Master, [{
-        key: "content",
-        value: function content() {
-            return "";
-        }
-    }, {
-        key: "stringify",
-        value: function stringify() {
-            return { __html: "window.props=" + JSON.stringify(this.props) };
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            return _react2["default"].createElement(
-                "html",
-                null,
-                _react2["default"].createElement(
-                    "head",
-                    null,
-                    _react2["default"].createElement("meta", { charSet: "UTF-8" }),
-                    _react2["default"].createElement(
-                        "title",
-                        null,
-                        "Foo"
-                    )
-                ),
-                _react2["default"].createElement(
-                    "body",
-                    null,
-                    _react2["default"].createElement(
-                        "div",
-                        null,
-                        _react2["default"].createElement(
-                            "h1",
-                            null,
-                            "Master page"
-                        ),
-                        _react2["default"].createElement(
-                            "div",
-                            { id: "app" },
-                            this.content()
-                        )
-                    ),
-                    _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() }),
-                    _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/vendor.js" }),
-                    _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/demo.js" })
-                )
-            );
-        }
-    }]);
-
-    return Master;
-})(_react2["default"].Component);
-
-exports["default"] = Master;
+exports["default"] = router;
 module.exports = exports["default"];
 
-},{"react":"react"}]},{},["/Users/jonas/Projects/Django/django-jsx/demo/static/js/index.js"])
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uLy4uL3Vzci9sb2NhbC9saWIvbm9kZV9tb2R1bGVzL3dhdGNoaWZ5L25vZGVfbW9kdWxlcy9icm93c2VyaWZ5L25vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCIvVXNlcnMvam9uYXMvUHJvamVjdHMvRGphbmdvL2RqYW5nby1qc3gvZGVtby9zdGF0aWMvanMvaW5kZXguanMiLCIvVXNlcnMvam9uYXMvUHJvamVjdHMvRGphbmdvL2RqYW5nby1qc3gvZGVtby9zdGF0aWMvanMvc3JjL2NvbXBvbmVudHMvYWJvdXQuanMiLCIvVXNlcnMvam9uYXMvUHJvamVjdHMvRGphbmdvL2RqYW5nby1qc3gvZGVtby9zdGF0aWMvanMvc3JjL2NvbXBvbmVudHMvaG9tZS5qcyIsIi9Vc2Vycy9qb25hcy9Qcm9qZWN0cy9EamFuZ28vZGphbmdvLWpzeC9kZW1vL3N0YXRpYy9qcy9zcmMvY29tcG9uZW50cy9tYXN0ZXIuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7O3FCQ0FrQixPQUFPOzs7O2lDQUNSLHVCQUF1Qjs7OztrQ0FDdEIsd0JBQXdCOzs7O0FBRzFDLFNBQVMsWUFBWSxHQUFHO0FBQ3BCLFlBQVEsTUFBTSxDQUFDLFFBQVEsQ0FBQyxRQUFRO0FBQzVCLGFBQUssR0FBRztBQUNKLGtEQUFZO0FBQUEsQUFDaEIsYUFBSyxTQUFTO0FBQ1YsbURBQWE7QUFBQSxLQUNwQjtDQUNKOztBQUdELElBQU0sU0FBUyxHQUFHLG1CQUFNLGFBQWEsQ0FBQyxZQUFZLEVBQUUsQ0FBQyxDQUFDOztBQUV0RCxtQkFBTSxNQUFNLENBQ1IsU0FBUyxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsRUFDdkIsUUFBUSxDQUNYLENBQUM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7cUJDcEJnQixPQUFPOzs7O3NCQUNOLFVBQVU7Ozs7QUFFN0IsSUFBTSxNQUFNLEdBQUcsT0FBTyxNQUFNLEtBQUssV0FBVyxDQUFDOztJQUd4QixLQUFLO2NBQUwsS0FBSzs7QUFDWCxhQURNLEtBQUssQ0FDVixLQUFLLEVBQUU7OEJBREYsS0FBSzs7QUFFbEIsbUNBRmEsS0FBSyw2Q0FFWixLQUFLLEVBQUU7S0FDaEI7O2lCQUhnQixLQUFLOztlQUtmLG1CQUFHO0FBQ04sbUJBQ0k7OztnQkFDSTs7OztpQkFBYztnQkFDYixJQUFJLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxHQUFHLENBQUUsVUFBQyxDQUFDLEVBQUUsQ0FBQyxFQUFLO0FBQzVCLDJCQUFPOzswQkFBRyxHQUFHLEVBQUUsSUFBSSxHQUFHLENBQUMsQUFBQzt3QkFBRSxDQUFDO3FCQUFLLENBQUE7aUJBQ25DLENBQUM7YUFDQSxDQUNUO1NBQ0o7OztXQWRnQixLQUFLOzs7cUJBQUwsS0FBSzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7cUJDTlIsT0FBTzs7OztzQkFDTixVQUFVOzs7O3FCQUNYLFNBQVM7Ozs7QUFFM0IsSUFBTSxNQUFNLEdBQUcsT0FBTyxNQUFNLEtBQUssV0FBVyxDQUFDOztJQUd4QixJQUFJO2NBQUosSUFBSTs7QUFDVCxhQURLLElBQUksQ0FDUixLQUFLLEVBQUU7OEJBREgsSUFBSTs7QUFFakIsbUNBRmEsSUFBSSw2Q0FFWCxLQUFLLEVBQUU7S0FDaEI7O2lCQUhnQixJQUFJOztlQUtILDZCQUFHLEVBRXBCOzs7ZUFFSSxlQUFDLENBQUMsRUFBRTtBQUNMLCtCQUFNLE1BQU0sQ0FDUiwwREFBUyxFQUNULFFBQVEsQ0FDWCxDQUFDO1NBQ0w7OztlQUVPLG1CQUFHO0FBQ1AsbUJBQ0k7OztnQkFDSTs7OztpQkFBYTtnQkFDYjs7OztpQkFBNEI7Z0JBQzVCOzs7b0JBQUc7OzBCQUFRLE9BQU8sRUFBRSxJQUFJLENBQUMsS0FBSyxBQUFDOztxQkFBa0I7aUJBQUk7Z0JBQ3JEOzs7b0JBQUksSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJO2lCQUFLO2dCQUN4Qjs7O29CQUFHOzswQkFBRyxJQUFJLEVBQUMsU0FBUzs7cUJBQVU7aUJBQUk7YUFDaEMsQ0FDVDtTQUNKOzs7V0ExQmdCLElBQUk7OztxQkFBSixJQUFJOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztxQkNQUCxPQUFPOzs7O0FBRXpCLElBQU0sTUFBTSxHQUFHLE9BQU8sTUFBTSxLQUFLLFdBQVcsQ0FBQzs7SUFHeEIsTUFBTTtjQUFOLE1BQU07O0FBQ1osYUFETSxNQUFNLENBQ1gsS0FBSyxFQUFFOzhCQURGLE1BQU07O0FBRW5CLG1DQUZhLE1BQU0sNkNBRWIsS0FBSyxFQUFFO0tBQ2hCOztpQkFIZ0IsTUFBTTs7ZUFLaEIsbUJBQUc7QUFDTixtQkFBTyxFQUFFLENBQUM7U0FDYjs7O2VBRVEscUJBQUc7QUFDUixtQkFBTyxFQUFDLE1BQU0sRUFBRSxlQUFlLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLEVBQUMsQ0FBQztTQUNqRTs7O2VBRUssa0JBQUc7QUFDTCxtQkFDSTs7O2dCQUNJOzs7b0JBQ0ksMkNBQU0sT0FBTyxFQUFDLE9BQU8sR0FBRztvQkFDeEI7Ozs7cUJBQWtCO2lCQUNmO2dCQUVQOzs7b0JBQ0k7Ozt3QkFDSTs7Ozt5QkFBb0I7d0JBQ3BCOzs4QkFBSyxFQUFFLEVBQUMsS0FBSzs0QkFBRSxJQUFJLENBQUMsT0FBTyxFQUFFO3lCQUFPO3FCQUNsQztvQkFFTiw2Q0FBUSxJQUFJLEVBQUMsaUJBQWlCLEVBQUMsdUJBQXVCLEVBQUUsSUFBSSxDQUFDLFNBQVMsRUFBRSxBQUFDLEdBQUc7b0JBQzVFLDZDQUFRLElBQUksRUFBQyxpQkFBaUIsRUFBQyxHQUFHLEVBQUMsMkJBQTJCLEdBQVU7b0JBQ3hFLDZDQUFRLElBQUksRUFBQyxpQkFBaUIsRUFBQyxHQUFHLEVBQUMseUJBQXlCLEdBQVU7aUJBQ25FO2FBQ0osQ0FDVjtTQUNKOzs7V0FqQ2dCLE1BQU07R0FBUyxtQkFBTSxTQUFTOztxQkFBOUIsTUFBTSIsImZpbGUiOiJnZW5lcmF0ZWQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlc0NvbnRlbnQiOlsiKGZ1bmN0aW9uIGUodCxuLHIpe2Z1bmN0aW9uIHMobyx1KXtpZighbltvXSl7aWYoIXRbb10pe3ZhciBhPXR5cGVvZiByZXF1aXJlPT1cImZ1bmN0aW9uXCImJnJlcXVpcmU7aWYoIXUmJmEpcmV0dXJuIGEobywhMCk7aWYoaSlyZXR1cm4gaShvLCEwKTt2YXIgZj1uZXcgRXJyb3IoXCJDYW5ub3QgZmluZCBtb2R1bGUgJ1wiK28rXCInXCIpO3Rocm93IGYuY29kZT1cIk1PRFVMRV9OT1RfRk9VTkRcIixmfXZhciBsPW5bb109e2V4cG9ydHM6e319O3Rbb11bMF0uY2FsbChsLmV4cG9ydHMsZnVuY3Rpb24oZSl7dmFyIG49dFtvXVsxXVtlXTtyZXR1cm4gcyhuP246ZSl9LGwsbC5leHBvcnRzLGUsdCxuLHIpfXJldHVybiBuW29dLmV4cG9ydHN9dmFyIGk9dHlwZW9mIHJlcXVpcmU9PVwiZnVuY3Rpb25cIiYmcmVxdWlyZTtmb3IodmFyIG89MDtvPHIubGVuZ3RoO28rKylzKHJbb10pO3JldHVybiBzfSkiLCJpbXBvcnQgUmVhY3QgZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgSG9tZSBmcm9tIFwiLi9zcmMvY29tcG9uZW50cy9ob21lXCI7XG5pbXBvcnQgQWJvdXQgZnJvbSBcIi4vc3JjL2NvbXBvbmVudHMvYWJvdXRcIjtcblxuXG5mdW5jdGlvbiBnZXRDb21wb25lbnQoKSB7XG4gICAgc3dpdGNoICh3aW5kb3cubG9jYXRpb24ucGF0aG5hbWUpIHtcbiAgICAgICAgY2FzZSBcIi9cIjpcbiAgICAgICAgICAgIHJldHVybiBIb21lO1xuICAgICAgICBjYXNlIFwiL2Fib3V0L1wiOlxuICAgICAgICAgICAgcmV0dXJuIEFib3V0O1xuICAgIH1cbn1cblxuXG5jb25zdCBDb21wb25lbnQgPSBSZWFjdC5jcmVhdGVGYWN0b3J5KGdldENvbXBvbmVudCgpKTtcblxuUmVhY3QucmVuZGVyKFxuICAgIENvbXBvbmVudCh3aW5kb3cucHJvcHMpLFxuICAgIGRvY3VtZW50XG4pO1xuIiwiaW1wb3J0IFJlYWN0IGZyb20gXCJyZWFjdFwiO1xuaW1wb3J0IE1hc3RlciBmcm9tIFwiLi9tYXN0ZXJcIjtcblxuY29uc3QgaXNOb2RlID0gdHlwZW9mIHdpbmRvdyA9PT0gJ3VuZGVmaW5lZCc7XG5cblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgQWJvdXQgZXh0ZW5kcyBNYXN0ZXIge1xuICAgIGNvbnN0cnVjdG9yKHByb3BzKSB7XG4gICAgICAgIHN1cGVyKHByb3BzKTtcbiAgICB9XG5cbiAgICBjb250ZW50KCkge1xuICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICA8aDI+QWJvdXQ8L2gyPlxuICAgICAgICAgICAgICAgIHt0aGlzLnByb3BzLmRhdGEubWFwKCAoZCwgaSkgPT4ge1xuICAgICAgICAgICAgICAgICAgICByZXR1cm4gPHAga2V5PXtcInAtXCIgKyBpfT57ZH08L3A+XG4gICAgICAgICAgICAgICAgfSl9XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgKVxuICAgIH1cbn1cbiIsImltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcbmltcG9ydCBNYXN0ZXIgZnJvbSBcIi4vbWFzdGVyXCI7XG5pbXBvcnQgQWJvdXQgZnJvbSBcIi4vYWJvdXRcIlxuXG5jb25zdCBpc05vZGUgPSB0eXBlb2Ygd2luZG93ID09PSAndW5kZWZpbmVkJztcblxuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBIb21lIGV4dGVuZHMgTWFzdGVyIHtcbiAgICBjb25zdHJ1Y3RvciAocHJvcHMpIHtcbiAgICAgICAgc3VwZXIocHJvcHMpO1xuICAgIH1cblxuICAgIGNvbXBvbmVudERpZE1vdW50ICgpIHtcblxuICAgIH1cblxuICAgIGNsaWNrKGUpIHtcbiAgICAgICAgUmVhY3QucmVuZGVyKFxuICAgICAgICAgICAgPEFib3V0IC8+LFxuICAgICAgICAgICAgZG9jdW1lbnRcbiAgICAgICAgKTtcbiAgICB9XG5cbiAgICBjb250ZW50ICgpIHtcbiAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPGgxPkhvbWU8L2gxPlxuICAgICAgICAgICAgICAgIDxwPlRoaXMgaXMgdGhlIGhvbWUgdmlldzwvcD5cbiAgICAgICAgICAgICAgICA8cD48YnV0dG9uIG9uQ2xpY2s9e3RoaXMuY2xpY2t9PkNsaWNrIG1lPC9idXR0b24+PC9wPlxuICAgICAgICAgICAgICAgIDxwPnt0aGlzLnByb3BzLmRhdGV9PC9wPlxuICAgICAgICAgICAgICAgIDxwPjxhIGhyZWY9XCIvYWJvdXQvXCI+QWJvdXQ8L2E+PC9wPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgIClcbiAgICB9XG59XG4iLCJpbXBvcnQgUmVhY3QgZnJvbSBcInJlYWN0XCI7XG5cbmNvbnN0IGlzTm9kZSA9IHR5cGVvZiB3aW5kb3cgPT09ICd1bmRlZmluZWQnO1xuXG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIE1hc3RlciBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gICAgY29uc3RydWN0b3IocHJvcHMpIHtcbiAgICAgICAgc3VwZXIocHJvcHMpO1xuICAgIH1cblxuICAgIGNvbnRlbnQoKSB7XG4gICAgICAgIHJldHVybiBcIlwiO1xuICAgIH1cblxuICAgIHN0cmluZ2lmeSgpIHtcbiAgICAgICAgcmV0dXJuIHtfX2h0bWw6IFwid2luZG93LnByb3BzPVwiICsgSlNPTi5zdHJpbmdpZnkodGhpcy5wcm9wcyl9O1xuICAgIH1cblxuICAgIHJlbmRlcigpIHtcbiAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgIDxodG1sPlxuICAgICAgICAgICAgICAgIDxoZWFkPlxuICAgICAgICAgICAgICAgICAgICA8bWV0YSBjaGFyU2V0PVwiVVRGLThcIiAvPlxuICAgICAgICAgICAgICAgICAgICA8dGl0bGU+Rm9vPC90aXRsZT5cbiAgICAgICAgICAgICAgICA8L2hlYWQ+XG5cbiAgICAgICAgICAgICAgICA8Ym9keT5cbiAgICAgICAgICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICAgICAgICAgIDxoMT5NYXN0ZXIgcGFnZTwvaDE+XG4gICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGlkPVwiYXBwXCI+e3RoaXMuY29udGVudCgpfTwvZGl2PlxuICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgICAgICAgICA8c2NyaXB0IHR5cGU9XCJ0ZXh0L2phdmFzY3JpcHRcIiBkYW5nZXJvdXNseVNldElubmVySFRNTD17dGhpcy5zdHJpbmdpZnkoKX0gLz5cbiAgICAgICAgICAgICAgICAgICAgPHNjcmlwdCB0eXBlPVwidGV4dC9qYXZhc2NyaXB0XCIgc3JjPVwiL3N0YXRpYy9qcy9kaXN0L3ZlbmRvci5qc1wiPjwvc2NyaXB0PlxuICAgICAgICAgICAgICAgICAgICA8c2NyaXB0IHR5cGU9XCJ0ZXh0L2phdmFzY3JpcHRcIiBzcmM9XCIvc3RhdGljL2pzL2Rpc3QvZGVtby5qc1wiPjwvc2NyaXB0PlxuICAgICAgICAgICAgICAgIDwvYm9keT5cbiAgICAgICAgICAgIDwvaHRtbD5cbiAgICAgICAgKVxuICAgIH1cbn1cbiJdfQ==
+},{"./components/about":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/about.js","./components/home":"/Users/jonas/Projects/Django/django-jsx/demo/static/js/src/components/home.js"}]},{},["/Users/jonas/Projects/Django/django-jsx/demo/static/js/index.js"])
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uLy4uL3Vzci9sb2NhbC9saWIvbm9kZV9tb2R1bGVzL3dhdGNoaWZ5L25vZGVfbW9kdWxlcy9icm93c2VyaWZ5L25vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCIvVXNlcnMvam9uYXMvUHJvamVjdHMvRGphbmdvL2RqYW5nby1qc3gvZGVtby9zdGF0aWMvanMvaW5kZXguanMiLCIvVXNlcnMvam9uYXMvUHJvamVjdHMvRGphbmdvL2RqYW5nby1qc3gvZGVtby9zdGF0aWMvanMvc3JjL2FwcC5qcyIsIi9Vc2Vycy9qb25hcy9Qcm9qZWN0cy9EamFuZ28vZGphbmdvLWpzeC9kZW1vL3N0YXRpYy9qcy9zcmMvY29tcG9uZW50cy9hYm91dC5qcyIsIi9Vc2Vycy9qb25hcy9Qcm9qZWN0cy9EamFuZ28vZGphbmdvLWpzeC9kZW1vL3N0YXRpYy9qcy9zcmMvY29tcG9uZW50cy9ob21lLmpzIiwiL1VzZXJzL2pvbmFzL1Byb2plY3RzL0RqYW5nby9kamFuZ28tanN4L2RlbW8vc3RhdGljL2pzL3NyYy9yb3V0ZXJzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7OztxQkNBa0IsT0FBTzs7OztzQkFDVCxXQUFXOzs7O0FBRzNCLElBQU0sU0FBUyxHQUFHLG1CQUFNLGFBQWEscUJBQUssQ0FBQzs7QUFFM0MsbUJBQU0sTUFBTSxDQUNSLFNBQVMsQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLEVBQ3ZCLFFBQVEsQ0FBQyxjQUFjLENBQUMsS0FBSyxDQUFDLENBQ2pDLENBQUM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7cUJDVGdCLE9BQU87Ozs7dUJBQ0wsV0FBVzs7OztJQUdWLEdBQUc7Y0FBSCxHQUFHOztBQUNULGFBRE0sR0FBRyxDQUNSLEtBQUssRUFBRTs4QkFERixHQUFHOztBQUVoQixtQ0FGYSxHQUFHLDZDQUVWLEtBQUssRUFBRTtBQUNiLFlBQUksQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLENBQUM7QUFDM0MsWUFBSSxDQUFDLFdBQVcsR0FBRyxJQUFJLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUMvQyxZQUFJLENBQUMsS0FBSyxHQUFHLEVBQUMsUUFBUSxFQUFFLEtBQUssQ0FBQyxRQUFRLElBQUksR0FBRyxFQUFDLENBQUM7S0FDbEQ7O2lCQU5nQixHQUFHOztlQVFSLHFCQUFDLENBQUMsRUFBRTtBQUNaLGFBQUMsQ0FBQyxjQUFjLEVBQUUsQ0FBQztBQUNuQixrQkFBTSxDQUFDLE9BQU8sQ0FBQyxTQUFTLENBQUMsSUFBSSxFQUFFLElBQUksRUFBRSxDQUFDLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQyxDQUFDO0FBQ3hELGdCQUFJLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLENBQUM7U0FDckM7OztlQUVRLG1CQUFDLFFBQVEsRUFBRTtBQUNoQixnQkFBSSxDQUFDLFFBQVEsQ0FBQyxFQUFDLFFBQVEsRUFBRSxRQUFRLEVBQUMsQ0FBQyxDQUFDO1NBQ3ZDOzs7ZUFFVSx1QkFBRztBQUNWLG1CQUFPLElBQUksQ0FBQyxLQUFLLENBQUMsUUFBUSxDQUFDO1NBQzlCOzs7ZUFFSyxrQkFBRztBQUNMLG1CQUNJLG1CQUFNLGFBQWEsQ0FBQyxxQkFBUSxZQUFZLENBQUMsSUFBSSxDQUFDLFdBQVcsRUFBRSxDQUFDLEVBQUUsRUFBQyxJQUFJLEVBQUUsSUFBSSxDQUFDLEtBQUssRUFBRSxXQUFXLEVBQUUsSUFBSSxDQUFDLFdBQVcsRUFBQyxDQUFDLENBQ25IO1NBQ0o7OztXQTFCZ0IsR0FBRztHQUFTLG1CQUFNLFNBQVM7O3FCQUEzQixHQUFHOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztxQkNKTixPQUFPOzs7O0lBR0osS0FBSztjQUFMLEtBQUs7O0FBQ1YsYUFESyxLQUFLLENBQ1QsS0FBSyxFQUFFOzhCQURILEtBQUs7O0FBRWxCLG1DQUZhLEtBQUssNkNBRVosS0FBSyxFQUFFO0FBQ2IsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7QUFDbkIsZUFBTyxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7S0FFM0I7O2lCQU5nQixLQUFLOztlQVFoQixrQkFBRztBQUNMLG1CQUNJOzs7Z0JBQ0k7Ozs7aUJBQWM7YUFDWixDQUNUO1NBQ0o7OztXQWRnQixLQUFLO0dBQVMsbUJBQU0sU0FBUzs7cUJBQTdCLEtBQUs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O3FCQ0hSLE9BQU87Ozs7OztxQkFFUCxTQUFTOzs7O0FBRTNCLElBQU0sTUFBTSxHQUFHLE9BQU8sTUFBTSxLQUFLLFdBQVcsQ0FBQzs7SUFHeEIsSUFBSTtjQUFKLElBQUk7O0FBQ1QsYUFESyxJQUFJLENBQ1IsS0FBSyxFQUFFOzhCQURILElBQUk7O0FBRWpCLG1DQUZhLElBQUksNkNBRVgsS0FBSyxFQUFFO0FBQ2IsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7S0FDdEI7O2lCQUpnQixJQUFJOztlQU1ILDZCQUFHLEVBRXBCOzs7ZUFFTSxrQkFBRztBQUNOLG1CQUNJOzs7Z0JBQ0k7Ozs7aUJBQWE7Z0JBRWI7Ozs7aUJBQTRCO2dCQUU1Qjs7O29CQUFJLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLElBQUk7aUJBQUs7Z0JBRTdCOzs7b0JBQUc7OzBCQUFHLElBQUksRUFBQyxTQUFTLEVBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsV0FBVyxBQUFDOztxQkFBVTtpQkFBSTthQUNqRSxDQUNUO1NBQ0o7OztXQXRCZ0IsSUFBSTtHQUFTLG1CQUFNLFNBQVM7O3FCQUE1QixJQUFJOzs7Ozs7Ozs7Ozs7K0JDUFAsb0JBQW9COzs7OzhCQUNyQixtQkFBbUI7Ozs7QUFHcEMsSUFBTSxNQUFNLEdBQUc7QUFDWCxnQkFBWSxFQUFBLHNCQUFDLFFBQVEsRUFBRTtBQUNuQixnQkFBUSxRQUFRO0FBQ1osaUJBQUssR0FBRztBQUNKLG1EQUFZO0FBQUEsQUFDaEIsaUJBQUssU0FBUztBQUNWLG9EQUFhO0FBQUEsQUFDakI7QUFDSSxtREFBVztBQUFBLFNBQ2xCO0tBQ0o7Q0FDSixDQUFDOztxQkFFYSxNQUFNIiwiZmlsZSI6ImdlbmVyYXRlZC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzQ29udGVudCI6WyIoZnVuY3Rpb24gZSh0LG4scil7ZnVuY3Rpb24gcyhvLHUpe2lmKCFuW29dKXtpZighdFtvXSl7dmFyIGE9dHlwZW9mIHJlcXVpcmU9PVwiZnVuY3Rpb25cIiYmcmVxdWlyZTtpZighdSYmYSlyZXR1cm4gYShvLCEwKTtpZihpKXJldHVybiBpKG8sITApO3ZhciBmPW5ldyBFcnJvcihcIkNhbm5vdCBmaW5kIG1vZHVsZSAnXCIrbytcIidcIik7dGhyb3cgZi5jb2RlPVwiTU9EVUxFX05PVF9GT1VORFwiLGZ9dmFyIGw9bltvXT17ZXhwb3J0czp7fX07dFtvXVswXS5jYWxsKGwuZXhwb3J0cyxmdW5jdGlvbihlKXt2YXIgbj10W29dWzFdW2VdO3JldHVybiBzKG4/bjplKX0sbCxsLmV4cG9ydHMsZSx0LG4scil9cmV0dXJuIG5bb10uZXhwb3J0c312YXIgaT10eXBlb2YgcmVxdWlyZT09XCJmdW5jdGlvblwiJiZyZXF1aXJlO2Zvcih2YXIgbz0wO288ci5sZW5ndGg7bysrKXMocltvXSk7cmV0dXJuIHN9KSIsImltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcbmltcG9ydCBBcHAgZnJvbSBcIi4vc3JjL2FwcFwiO1xuXG5cbmNvbnN0IENvbXBvbmVudCA9IFJlYWN0LmNyZWF0ZUZhY3RvcnkoQXBwKTtcblxuUmVhY3QucmVuZGVyKFxuICAgIENvbXBvbmVudCh3aW5kb3cucHJvcHMpLFxuICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiYXBwXCIpXG4pO1xuIiwiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCByb3V0ZXJzIGZyb20gXCIuL3JvdXRlcnNcIlxuXG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEFwcCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gICAgY29uc3RydWN0b3IocHJvcHMpIHtcbiAgICAgICAgc3VwZXIocHJvcHMpO1xuICAgICAgICB0aGlzLnVwZGF0ZVVybCA9IHRoaXMudXBkYXRlVXJsLmJpbmQodGhpcyk7XG4gICAgICAgIHRoaXMuaGFuZGxlQ2xpY2sgPSB0aGlzLmhhbmRsZUNsaWNrLmJpbmQodGhpcyk7XG4gICAgICAgIHRoaXMuc3RhdGUgPSB7cGF0aG5hbWU6IHByb3BzLnBhdGhuYW1lIHx8ICcvJ307XG4gICAgfVxuXG4gICAgaGFuZGxlQ2xpY2sgKGUpIHtcbiAgICAgICAgZS5wcmV2ZW50RGVmYXVsdCgpO1xuICAgICAgICB3aW5kb3cuaGlzdG9yeS5wdXNoU3RhdGUobnVsbCwgbnVsbCwgZS50YXJnZXQucGF0aG5hbWUpO1xuICAgICAgICB0aGlzLnVwZGF0ZVVybChlLnRhcmdldC5wYXRobmFtZSk7XG4gICAgfVxuXG4gICAgdXBkYXRlVXJsKHBhdGhuYW1lKSB7XG4gICAgICAgIHRoaXMuc2V0U3RhdGUoe3BhdGhuYW1lOiBwYXRobmFtZX0pO1xuICAgIH1cblxuICAgIGdldFBhdGhOYW1lKCkge1xuICAgICAgICByZXR1cm4gdGhpcy5zdGF0ZS5wYXRobmFtZTtcbiAgICB9XG5cbiAgICByZW5kZXIoKSB7XG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICBSZWFjdC5jcmVhdGVFbGVtZW50KHJvdXRlcnMuZ2V0Q29tcG9uZW50KHRoaXMuZ2V0UGF0aE5hbWUoKSksIHtkYXRhOiB0aGlzLnByb3BzLCBoYW5kbGVDbGljazogdGhpcy5oYW5kbGVDbGlja30pXG4gICAgICAgIClcbiAgICB9XG59XG4iLCJpbXBvcnQgUmVhY3QgZnJvbSBcInJlYWN0XCI7XG5cblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgQWJvdXQgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuICAgIGNvbnN0cnVjdG9yIChwcm9wcykge1xuICAgICAgICBzdXBlcihwcm9wcyk7XG4gICAgICAgIHRoaXMuc3RhdGUgPSBwcm9wcztcbiAgICAgICAgY29uc29sZS5sb2codGhpcy5zdGF0ZSk7XG5cbiAgICB9XG5cbiAgICByZW5kZXIoKSB7XG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgICAgIDxoMj5BYm91dDwvaDI+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgKVxuICAgIH1cbn1cbiIsImltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcbi8vaW1wb3J0IE1hc3RlciBmcm9tIFwiLi9tYXN0ZXJcIjtcbmltcG9ydCBBYm91dCBmcm9tIFwiLi9hYm91dFwiXG5cbmNvbnN0IGlzTm9kZSA9IHR5cGVvZiB3aW5kb3cgPT09ICd1bmRlZmluZWQnO1xuXG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEhvbWUgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuICAgIGNvbnN0cnVjdG9yIChwcm9wcykge1xuICAgICAgICBzdXBlcihwcm9wcyk7XG4gICAgICAgIHRoaXMuc3RhdGUgPSBwcm9wcztcbiAgICB9XG5cbiAgICBjb21wb25lbnREaWRNb3VudCAoKSB7XG5cbiAgICB9XG5cbiAgICByZW5kZXIgKCkge1xuICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICA8aDE+SG9tZTwvaDE+XG5cbiAgICAgICAgICAgICAgICA8cD5UaGlzIGlzIHRoZSBob21lIHZpZXc8L3A+XG5cbiAgICAgICAgICAgICAgICA8cD57dGhpcy5zdGF0ZS5kYXRhLmRhdGV9PC9wPlxuXG4gICAgICAgICAgICAgICAgPHA+PGEgaHJlZj1cIi9hYm91dC9cIiBvbkNsaWNrPXt0aGlzLnN0YXRlLmhhbmRsZUNsaWNrfT5BYm91dDwvYT48L3A+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgKVxuICAgIH1cbn1cbiIsImltcG9ydCBBYm91dCBmcm9tIFwiLi9jb21wb25lbnRzL2Fib3V0XCJcbmltcG9ydCBIb21lIGZyb20gXCIuL2NvbXBvbmVudHMvaG9tZVwiXG5cblxuY29uc3Qgcm91dGVyID0ge1xuICAgIGdldENvbXBvbmVudChwYXRobmFtZSkge1xuICAgICAgICBzd2l0Y2ggKHBhdGhuYW1lKSB7XG4gICAgICAgICAgICBjYXNlIFwiL1wiOlxuICAgICAgICAgICAgICAgIHJldHVybiBIb21lO1xuICAgICAgICAgICAgY2FzZSBcIi9hYm91dC9cIjpcbiAgICAgICAgICAgICAgICByZXR1cm4gQWJvdXQ7XG4gICAgICAgICAgICBkZWZhdWx0IDpcbiAgICAgICAgICAgICAgICByZXR1cm4gSG9tZVxuICAgICAgICB9XG4gICAgfVxufTtcblxuZXhwb3J0IGRlZmF1bHQgcm91dGVyO1xuIl19

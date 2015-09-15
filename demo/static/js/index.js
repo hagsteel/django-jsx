@@ -1,21 +1,10 @@
 import React from "react";
-import Home from "./src/components/home";
-import About from "./src/components/about";
+import App from "./src/app";
 
 
-function getComponent() {
-    switch (window.location.pathname) {
-        case "/":
-            return Home;
-        case "/about/":
-            return About;
-    }
-}
-
-
-const Component = React.createFactory(getComponent());
+const Component = React.createFactory(App);
 
 React.render(
     Component(window.props),
-    document
+    document.getElementById("app")
 );

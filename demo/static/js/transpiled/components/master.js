@@ -18,8 +18,6 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var isNode = typeof window === "undefined";
-
 var Master = (function (_React$Component) {
     function Master(props) {
         _classCallCheck(this, Master);
@@ -30,18 +28,19 @@ var Master = (function (_React$Component) {
     _inherits(Master, _React$Component);
 
     _createClass(Master, [{
-        key: "content",
-        value: function content() {
-            return "";
-        }
-    }, {
         key: "stringify",
         value: function stringify() {
-            return { __html: "window.props=" + JSON.stringify(this.props) };
+            return { __html: "window.props=" + JSON.stringify(this.props.context) };
+        }
+    }, {
+        key: "children",
+        value: function children() {
+            return { __html: this.props.children };
         }
     }, {
         key: "render",
         value: function render() {
+            console.log(this.props);
             return _react2["default"].createElement(
                 "html",
                 null,
@@ -67,10 +66,28 @@ var Master = (function (_React$Component) {
                             "Master page"
                         ),
                         _react2["default"].createElement(
-                            "div",
-                            { id: "app" },
-                            this.content()
-                        )
+                            "ul",
+                            null,
+                            _react2["default"].createElement(
+                                "li",
+                                null,
+                                _react2["default"].createElement(
+                                    "a",
+                                    { href: "/", onClick: this.click },
+                                    "Home"
+                                )
+                            ),
+                            _react2["default"].createElement(
+                                "li",
+                                null,
+                                _react2["default"].createElement(
+                                    "a",
+                                    { href: "/about/", onClick: this.click },
+                                    "About"
+                                )
+                            )
+                        ),
+                        _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() })
                     ),
                     _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() }),
                     _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/vendor.js" }),
