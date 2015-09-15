@@ -27,6 +27,7 @@ var Home = (function (_React$Component) {
         _classCallCheck(this, Home);
 
         _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
+        console.log(props);
     }
 
     _inherits(Home, _React$Component);
@@ -44,36 +45,16 @@ var Home = (function (_React$Component) {
         value: function render() {
             var isNode = typeof window === "undefined";
 
-            if (isNode === false) {
-                return _react2["default"].createElement(
-                    "div",
-                    null,
-                    _react2["default"].createElement(
-                        "h1",
-                        null,
-                        "Home"
-                    ),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        "This is the home view"
-                    ),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        this.props.date
-                    ),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "button",
-                            { onClick: this.click },
-                            "Click me"
-                        )
-                    )
-                );
-            }
+            //if (isNode === false) {
+            //    return (
+            //        <div>
+            //            <h1>Home</h1>
+            //            <p>This is the home view</p>
+            //            <p>{this.props.date}</p>
+            //            <p><button onClick={this.click}>Click me</button></p>
+            //        </div>
+            //    )
+            //}
 
             return _react2["default"].createElement(
                 _master2["default"],

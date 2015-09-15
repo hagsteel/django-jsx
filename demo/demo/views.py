@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 
 class Home(TemplateView):
     template_name = 'transpiled/components/home.js'
-    render_static = True
+    # render_static = True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

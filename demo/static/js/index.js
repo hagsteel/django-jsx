@@ -4,7 +4,7 @@ import About from "./src/components/about";
 
 
 React.render(
-    <Home date='now' />,
-    document.getElementById("app")
+    <Home />,
+    document//.getElementById("app")
 );
     //document
