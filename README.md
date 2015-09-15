@@ -22,6 +22,14 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
     ]
     
 
+## Settings
+
+### Optional
+
+`DJANGO_ISOMORPHIC_RENDERER`
+Absolute path to an alternative renderer
+
+
 
 ## Usage
 
@@ -98,6 +106,4 @@ to
 ## TODO
 
 *  Build the server into one script file
-*  Error reporting
-*  Template exceptions
 *  Mention ES6 help: babel src --out-dir ./transpiled --watch 
