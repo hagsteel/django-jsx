@@ -1,16 +1,18 @@
-"use strict";
+'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _net = require("net");
+var _net = require('net');
 
 var _net2 = _interopRequireDefault(_net);
 
-var _fs = require("fs");
+var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _rendererReactReactTempateRendererJs = require("./renderer/react/react-tempate-renderer.js");
+//import {renderer} from './renderer/react/react-tempate-renderer.js'
+
+var reactRendererPath = './renderer/react/react-tempate-renderer.js';
 
 var getOptions = function getOptions() {
     if (process.argv.length < 3) {
@@ -19,20 +21,27 @@ var getOptions = function getOptions() {
 
     var options = {};
     for (var i = 2; i < process.argv.length; i += 1) {
-        var opt = process.argv[i].split("=");
+        var opt = process.argv[i].split('=');
         options[opt[0]] = opt[1];
     }
 
-    console.log(options);
+    if (options.renderer === undefined) {
+        options.renderer = require(reactRendererPath).renderer;
+    } else {
+        options.renderer = require(options.renderer);
+    }
+
+    return options;
 };
 
-console.log(getOptions());
+var server = _net2['default'].createServer(function (socket) {
+    var options = getOptions();
+    var renderer = options.renderer;
 
-var server = _net2["default"].createServer(function (socket) {
-    socket.on("data", function (data) {
+    socket.on('data', function (data) {
         try {
             var obj = JSON.parse(data.toString());
-            var renderedTemplate = _rendererReactReactTempateRendererJs.renderer.render(obj.template, obj.context);
+            var renderedTemplate = renderer.render(obj.template, obj.context);
             socket.write(renderedTemplate);
         } catch (ex) {
             console.log(ex.stack);
@@ -43,14 +52,14 @@ var server = _net2["default"].createServer(function (socket) {
 });
 
 var serve = function serve() {
-    var socketPath = "/tmp/template-server.sock";
+    var socketPath = '/tmp/template-server.sock';
     try {
         // Delete stale socket
-        _fs2["default"].unlinkSync(socketPath);
+        _fs2['default'].unlinkSync(socketPath);
     } catch (ex) {}
 
     server.listen(socketPath, function () {
-        console.log("Template server running");
+        console.log('Template server running');
     });
 };
 

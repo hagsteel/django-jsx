@@ -39,7 +39,14 @@ In a template:
 
 ### Pure React components as templates
 
+...
 
+
+## Custom template renderer
+
+Specify the path to the renderer in settings:
+
+    DJANGO_ISOMORPHIC_RENDERER  = os.path.join(BASE_DIR, 'custom_renderer/custom.js')
 
 
 ## Additional info

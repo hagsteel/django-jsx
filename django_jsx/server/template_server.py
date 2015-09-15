@@ -18,15 +18,13 @@ class TemplateServer():
             '../../javascript/dist/'
         )
 
-        renderer = 'default';
-        for template_setting in settings.TEMPLATES:
-            if template_setting.get('BACKEND') == 'django_jsx.template.backend.JsTemplates':
-                renderer = template_setting.get('RENDERER') or renderer
-
         options = [
             'debug={}'.format(settings.DEBUG),
-            'renderer={}'.format(renderer),
         ]
+
+        renderer = getattr(settings, 'DJANGO_ISOMORPHIC_RENDERER', None)
+        if renderer:
+            options.append('renderer={}'.format(renderer))
 
         self.proc = Popen(['node', 'template-server.js'] + options, cwd=cwd, preexec_fn=os.setsid)
 

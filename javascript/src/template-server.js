@@ -1,6 +1,9 @@
-import net from "net";
-import fs from "fs";
-import {renderer} from "./renderer/react/react-tempate-renderer.js"
+import net from 'net';
+import fs from 'fs';
+//import {renderer} from './renderer/react/react-tempate-renderer.js'
+
+const reactRendererPath = './renderer/react/react-tempate-renderer.js'
+
 
 
 const getOptions = () => {
@@ -14,12 +17,20 @@ const getOptions = () => {
         options[opt[0]] = opt[1];
     }
 
-    console.log(options);
+    if (options.renderer === undefined) {
+        options.renderer = require(reactRendererPath).renderer;
+    } else {
+        options.renderer = require(options.renderer);
+    }
+
+    return options;
 };
 
-console.log(getOptions());
 
 const server = net.createServer((socket) => {
+    const options = getOptions();
+    const renderer = options.renderer;
+
     socket.on("data", (data) => {
         try {
             const obj = JSON.parse(data.toString());
