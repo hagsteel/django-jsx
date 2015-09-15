@@ -27,14 +27,18 @@ class JsxTemplate(object):
         self.template_path = template_path
 
     def render(self, context=None, request=None):
+        render_static = False
+
         if context is None:
             context = {}
         if request is not None:
             if 'view' in context:
-                context.pop('view')
+                view = context.pop('view')
+                if hasattr(view, 'render_static'):
+                    render_static = view.render_static
             # context['request'] = request
             context['csrf_input'] = csrf_input(request)
             context['csrf_token'] = get_token(request)
 
         client = TemplateClient()
-        return client.render_template(self.template_path, context, False)
+        return client.render_template(self.template_path, context, render_static)

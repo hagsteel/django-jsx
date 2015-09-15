@@ -22,24 +22,61 @@ var _master = require("./master");
 
 var _master2 = _interopRequireDefault(_master);
 
-var Home = (function (_Master) {
+var Home = (function (_React$Component) {
     function Home(props) {
         _classCallCheck(this, Home);
 
         _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
-        this.state = {};
     }
 
-    _inherits(Home, _Master);
+    _inherits(Home, _React$Component);
 
     _createClass(Home, [{
         key: "componentDidMount",
         value: function componentDidMount() {}
     }, {
-        key: "content",
-        value: function content() {
+        key: "click",
+        value: function click(e) {
+            alert("clicked");
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var isNode = typeof window === "undefined";
+
+            if (isNode === false) {
+                return _react2["default"].createElement(
+                    "div",
+                    null,
+                    _react2["default"].createElement(
+                        "h1",
+                        null,
+                        "Home"
+                    ),
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        "This is the home view"
+                    ),
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        this.props.date
+                    ),
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        _react2["default"].createElement(
+                            "button",
+                            { onClick: this.click },
+                            "Click me"
+                        )
+                    )
+                );
+            }
+
             return _react2["default"].createElement(
-                "div",
+                _master2["default"],
                 null,
                 _react2["default"].createElement(
                     "h1",
@@ -50,13 +87,27 @@ var Home = (function (_Master) {
                     "p",
                     null,
                     "This is the home view"
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    this.props.date
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                        "button",
+                        { onClick: this.click },
+                        "Click me"
+                    )
                 )
             );
         }
     }]);
 
     return Home;
-})(_master2["default"]);
+})(_react2["default"].Component);
 
 exports["default"] = Home;
 module.exports = exports["default"];

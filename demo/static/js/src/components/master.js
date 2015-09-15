@@ -6,6 +6,10 @@ export default class Master extends React.Component {
         super(props);
     }
 
+    content() {
+        return "";
+    }
+
     render() {
         return (
             <html>
@@ -18,7 +22,7 @@ export default class Master extends React.Component {
                 <body>
                     <div>
                         <h1>Master page</h1>
-                        <div id="app">{this.content()}</div>
+                        <div id="app">{this.props.children}</div>
                     </div>
 
                     <script type="text/javascript" src="/static/js/dist/vendor.js"></script>

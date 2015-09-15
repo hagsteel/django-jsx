@@ -28,6 +28,11 @@ var Master = (function (_React$Component) {
     _inherits(Master, _React$Component);
 
     _createClass(Master, [{
+        key: "content",
+        value: function content() {
+            return "";
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2["default"].createElement(
@@ -58,7 +63,7 @@ var Master = (function (_React$Component) {
                         _react2["default"].createElement(
                             "div",
                             { id: "app" },
-                            this.content()
+                            this.props.children
                         )
                     ),
                     _react2["default"].createElement("script", { type: "text/javascript", src: "/static/js/dist/vendor.js" }),
