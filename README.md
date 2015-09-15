@@ -48,6 +48,22 @@ Specify the path to the renderer in settings:
 
     DJANGO_ISOMORPHIC_RENDERER  = os.path.join(BASE_DIR, 'custom_renderer/custom.js')
 
+The custom renderer has to implement one function: `render` that takes two arguments:
+
+*  templatePath
+*  context
+
+An example custom template renderer:
+
+    var renderer = {
+        render: function(templatePath, context) {
+            return 'This is a custom template renderer';
+        }
+    };
+    
+    
+    module.exports = renderer;
+
 
 ## Additional info
 

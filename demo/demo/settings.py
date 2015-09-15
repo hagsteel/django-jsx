@@ -76,7 +76,7 @@ TEMPLATES = [
     }
 ]
 
-DJANGO_ISOMORPHIC_RENDERER = os.path.join(BASE_DIR, 'custom_renderer/custom.js')
+#DJANGO_ISOMORPHIC_RENDERER = os.path.join(BASE_DIR, 'custom_renderer/custom.js')
 
 WSGI_APPLICATION = 'demo.wsgi.application'
 
