@@ -6,6 +6,10 @@ server_address = '/tmp/template-server.sock'
 BUFFER_SIZE = 8192
 
 
+class JsTemplateException(Exception):
+    pass
+
+
 class TemplateClient():
     def render_template(self, file_path, context=None, render_static=False):
         return render_template(file_path, context, render_static)
@@ -33,4 +37,9 @@ def render_template(file_path, context=None, render_static=False):
     message = json.dumps(data).encode()
     sock.send(message)
     response = receive(sock)
-    return response
+    status = response[0]
+
+    if status != '0':
+        raise JsTemplateException(response[1:])
+
+    return response[1:]

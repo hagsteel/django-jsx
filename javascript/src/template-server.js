@@ -35,9 +35,10 @@ const server = net.createServer((socket) => {
         try {
             const obj = JSON.parse(data.toString());
             const renderedTemplate = renderer.render(obj.template, obj.context);
-            socket.write(renderedTemplate);
+            socket.write("0" + renderedTemplate);
         } catch (ex) {
-            console.log(ex.stack);
+            socket.write("1" + ex.stack);
+            //console.log(ex.stack);
         } finally {
             socket.end();
         }

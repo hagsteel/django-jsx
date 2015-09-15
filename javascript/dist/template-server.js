@@ -42,9 +42,10 @@ var server = _net2['default'].createServer(function (socket) {
         try {
             var obj = JSON.parse(data.toString());
             var renderedTemplate = renderer.render(obj.template, obj.context);
-            socket.write(renderedTemplate);
+            socket.write('0' + renderedTemplate);
         } catch (ex) {
-            console.log(ex.stack);
+            socket.write('1' + ex.stack);
+            //console.log(ex.stack);
         } finally {
             socket.end();
         }
