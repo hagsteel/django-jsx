@@ -5,6 +5,12 @@ Requires Django 1.8 (because you want to use multiple template engines).
 *Note* The server has to be restarted for template updates as the templates are cached on the template server.
 
 
+## Why?
+
+There are few easy to use libraries for rendering JavaScript server side for Django.
+The aim was to create a solution that requires as little setup as possible and performs well.
+
+
 ## Installation
 
 To auto start the server add `django_jsx` to `INSTALLED_APPS`

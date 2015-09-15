@@ -18,39 +18,48 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var Home = (function (_React$Component) {
-    function Home(props) {
-        _classCallCheck(this, Home);
+var _wildjs = require("wildjs");
 
-        _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this, props);
+var _wildjs2 = _interopRequireDefault(_wildjs);
+
+var Form = (function (_React$Component) {
+    function Form(props) {
+        _classCallCheck(this, Form);
+
+        _get(Object.getPrototypeOf(Form.prototype), "constructor", this).call(this, props);
         this.state = props;
+        this.submitForm = this.submitForm.bind(this);
     }
 
-    _inherits(Home, _React$Component);
+    _inherits(Form, _React$Component);
 
-    _createClass(Home, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {}
+    _createClass(Form, [{
+        key: "submitForm",
+        value: function submitForm(e) {
+            var _this = this;
+
+            e.preventDefault();
+            var val = e.target.getElementsByTagName("input")[0].value;
+            _wildjs2["default"].rest.post("/api/", { value: val }).then(function (response) {
+                _this.setState({ message: response.value });
+            });
+        }
     }, {
         key: "render",
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "form",
+                { method: "post", onSubmit: this.submitForm },
                 _react2["default"].createElement(
-                    "h1",
+                    "h4",
                     null,
-                    "Home"
+                    this.state.message
                 ),
+                _react2["default"].createElement("input", { type: "text", name: "foo", id: "foo" }),
                 _react2["default"].createElement(
-                    "p",
-                    null,
-                    "This is the home view"
-                ),
-                _react2["default"].createElement(
-                    "p",
-                    null,
-                    this.state.data.date
+                    "button",
+                    { type: "submit" },
+                    "Save"
                 ),
                 _react2["default"].createElement(
                     "p",
@@ -74,8 +83,8 @@ var Home = (function (_React$Component) {
         }
     }]);
 
-    return Home;
+    return Form;
 })(_react2["default"].Component);
 
-exports["default"] = Home;
+exports["default"] = Form;
 module.exports = exports["default"];

@@ -14,6 +14,10 @@ var _componentsHome = require("./components/home");
 
 var _componentsHome2 = _interopRequireDefault(_componentsHome);
 
+var _componentsForm = require("./components/form");
+
+var _componentsForm2 = _interopRequireDefault(_componentsForm);
+
 var router = {
     getComponent: function getComponent(pathname) {
         switch (pathname) {
@@ -21,6 +25,8 @@ var router = {
                 return _componentsHome2["default"];
             case "/about/":
                 return _componentsAbout2["default"];
+            case "/form/":
+                return _componentsForm2["default"];
             default:
                 return _componentsHome2["default"];
         }
