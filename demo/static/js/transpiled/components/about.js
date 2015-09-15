@@ -31,6 +31,7 @@ var About = (function (_React$Component) {
     _createClass(About, [{
         key: "render",
         value: function render() {
+            var data = this.state.data.data || [];
             return _react2["default"].createElement(
                 "div",
                 null,
@@ -48,7 +49,7 @@ var About = (function (_React$Component) {
                         "Home"
                     )
                 ),
-                this.state.data.data.map(function (d, i) {
+                data.map(function (d, i) {
                     return _react2["default"].createElement(
                         "p",
                         { key: "p-" + i },
