@@ -37,9 +37,6 @@ var Master = (function (_React$Component) {
                     "head",
                     null,
                     _react2["default"].createElement("meta", { charSet: "UTF-8" }),
-                    _react2["default"].createElement("link", { href: "/static/css/core.css", media: "all", rel: "stylesheet" }),
-                    _react2["default"].createElement("link", { href: "/static/css/react-widgets.css", media: "all", rel: "stylesheet" }),
-                    _react2["default"].createElement("link", { href: "/static/css/variables.css", media: "all", rel: "stylesheet" }),
                     _react2["default"].createElement(
                         "title",
                         null,
