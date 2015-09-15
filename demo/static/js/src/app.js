@@ -7,6 +7,7 @@ export default class App extends React.Component {
         super(props);
         this.updateUrl = this.updateUrl.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        console.log(props.pathname);
         this.state = {pathname: props.pathname || '/'};
     }
 

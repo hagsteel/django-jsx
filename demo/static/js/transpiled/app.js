@@ -29,6 +29,7 @@ var App = (function (_React$Component) {
         _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
         this.updateUrl = this.updateUrl.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        console.log(props.pathname);
         this.state = { pathname: props.pathname || '/' };
     }
 

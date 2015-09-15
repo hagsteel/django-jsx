@@ -65,28 +65,6 @@ var Master = (function (_React$Component) {
                             null,
                             "Master page"
                         ),
-                        _react2["default"].createElement(
-                            "ul",
-                            null,
-                            _react2["default"].createElement(
-                                "li",
-                                null,
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "/", onClick: this.click },
-                                    "Home"
-                                )
-                            ),
-                            _react2["default"].createElement(
-                                "li",
-                                null,
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "/about/", onClick: this.click },
-                                    "About"
-                                )
-                            )
-                        ),
                         _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() })
                     ),
                     _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() }),

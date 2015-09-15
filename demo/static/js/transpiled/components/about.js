@@ -24,7 +24,6 @@ var About = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(About.prototype), "constructor", this).call(this, props);
         this.state = props;
-        console.log(this.state);
     }
 
     _inherits(About, _React$Component);
@@ -39,6 +38,15 @@ var About = (function (_React$Component) {
                     "h2",
                     null,
                     "About"
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                        "a",
+                        { href: "/", onClick: this.state.handleClick },
+                        "Home"
+                    )
                 )
             );
         }

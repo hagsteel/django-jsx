@@ -26,10 +26,6 @@ export default class Master extends React.Component {
                 <body>
                     <div>
                         <h1>Master page</h1>
-                        <ul>
-                            <li><a href="/" onClick={this.click}>Home</a></li>
-                            <li><a href="/about/" onClick={this.click}>About</a></li>
-                        </ul>
                         <div id="app" dangerouslySetInnerHTML={this.children()}></div>
                     </div>
 
