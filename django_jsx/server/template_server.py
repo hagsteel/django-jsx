@@ -28,6 +28,5 @@ class TemplateServer():
 
         self.proc = Popen(['node', 'template-server.js'] + options, cwd=cwd, preexec_fn=os.setsid)
 
-
     def terminate(self):
         os.killpg(self.proc.pid, signal.SIGTERM)
