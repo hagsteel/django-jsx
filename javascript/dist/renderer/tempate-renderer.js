@@ -16,18 +16,18 @@ var renderer = {
     render: function render(templatePath, context) {
         var renderStatic = arguments[2] === undefined ? false : arguments[2];
 
-        var basePath = "/Users/jonas/Projects/Django/django-jsx/demo/static/js/transpiled/components/master.js";
-        var BaseComponent = _templateLoader.loader.load(basePath);
+        //const basePath = '/Users/jonas/Projects/Django/django-jsx/demo/static/js/transpiled/components/master.js';
+        //const BaseComponent = loader.load(basePath);
         var Component = _templateLoader.loader.load(templatePath);
-        if (renderStatic === true) {
-            return _react2["default"].renderToStaticMarkup(Component(context));
-        } else {
-            var child = _react2["default"].renderToString(Component(context));
-            return _react2["default"].renderToStaticMarkup(BaseComponent({ children: child, context: context }));
+        //if (renderStatic === true) {
+        return _react2["default"].renderToStaticMarkup(Component(context));
+        //} else {
+        //    const child = React.renderToString(Component(context));
+        //    return React.renderToStaticMarkup(BaseComponent({children:child, context:context}));
 
-            // Default
-            //return React.renderToString(Component(context));
-        }
+        // Default
+        //return React.renderToString(Component(context));
+        //}
     }
 };
 

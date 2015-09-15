@@ -1,4 +1,5 @@
 import React from "react";
+import App from "../app"
 
 
 export default class Master extends React.Component {
@@ -7,11 +8,14 @@ export default class Master extends React.Component {
     }
 
     stringify() {
-        return {__html: "window.props=" + JSON.stringify(this.props.context)};
+        return {__html: "window.props=" + JSON.stringify(this.props)};
     }
 
     children() {
-        return {__html: this.props.children};
+        const app = React.createFactory(App);
+        return {__html: React.renderToString(app(this.props))};
+
+        //return {__html: this.props.children};
     }
 
     render() {

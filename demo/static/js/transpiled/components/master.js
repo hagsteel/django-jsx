@@ -18,6 +18,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _app = require("../app");
+
+var _app2 = _interopRequireDefault(_app);
+
 var Master = (function (_React$Component) {
     function Master(props) {
         _classCallCheck(this, Master);
@@ -30,12 +34,15 @@ var Master = (function (_React$Component) {
     _createClass(Master, [{
         key: "stringify",
         value: function stringify() {
-            return { __html: "window.props=" + JSON.stringify(this.props.context) };
+            return { __html: "window.props=" + JSON.stringify(this.props) };
         }
     }, {
         key: "children",
         value: function children() {
-            return { __html: this.props.children };
+            var app = _react2["default"].createFactory(_app2["default"]);
+            return { __html: _react2["default"].renderToString(app(this.props)) };
+
+            //return {__html: this.props.children};
         }
     }, {
         key: "render",

@@ -24,7 +24,6 @@ var About = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(About.prototype), "constructor", this).call(this, props);
         this.state = props;
-        console.log(this.state);
     }
 
     _inherits(About, _React$Component);
