@@ -16,9 +16,11 @@ export default class App extends React.Component {
     }
 
     handleClick (e) {
-        e.preventDefault();
-        window.history.pushState(null, null, e.target.pathname);
-        this.updateUrl(e.target.pathname);
+        if (window.history.pushState !== undefined) {
+            e.preventDefault();
+            window.history.pushState(null, null, e.target.pathname);
+            this.updateUrl(e.target.pathname);
+        }
     }
 
     updateUrl (pathname) {

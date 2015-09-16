@@ -46,9 +46,11 @@ var App = (function (_React$Component) {
     }, {
         key: 'handleClick',
         value: function handleClick(e) {
-            e.preventDefault();
-            window.history.pushState(null, null, e.target.pathname);
-            this.updateUrl(e.target.pathname);
+            if (window.history.pushState !== undefined) {
+                e.preventDefault();
+                window.history.pushState(null, null, e.target.pathname);
+                this.updateUrl(e.target.pathname);
+            }
         }
     }, {
         key: 'updateUrl',
