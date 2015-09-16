@@ -12,9 +12,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var renderer = {
     render: function render(templatePath, context, request) {
-        context.request = request;
-        var Component = require(templatePath);
-        return _react2["default"].renderToStaticMarkup(_react2["default"].createElement(Component, context));
+        return "This is a custom renderer";
     }
 };
 

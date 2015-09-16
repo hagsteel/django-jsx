@@ -14,6 +14,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
+var _historyLibCreateLocation = require("history/lib/createLocation");
+
+var _historyLibCreateLocation2 = _interopRequireDefault(_historyLibCreateLocation);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -21,6 +25,10 @@ var _react2 = _interopRequireDefault(_react);
 var _app = require("../app");
 
 var _app2 = _interopRequireDefault(_app);
+
+var _routes = require("../routes");
+
+var _reactRouter = require("react-router");
 
 var Base = (function (_React$Component) {
     function Base(props) {
@@ -39,23 +47,26 @@ var Base = (function (_React$Component) {
     }, {
         key: "children",
         value: function children() {
-            var app = _react2["default"].createFactory(_app2["default"]);
-            return { __html: _react2["default"].renderToString(app(this.props)) };
+            //const app = React.createFactory(App);
+            //return {__html: React.renderToString(app(this.props))};
+
+            return { __html: _react2["default"].createElement(_reactRouter.RoutingContext, this.props) };
         }
     }, {
         key: "render",
         value: function render() {
-            return _react2["default"].createElement(
-                "div",
-                null,
-                _react2["default"].createElement(
-                    "h1",
-                    null,
-                    "Master page"
-                ),
-                _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() }),
-                _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() })
-            );
+            var location = (0, _historyLibCreateLocation2["default"])(this.props.request.path);
+            (0, _reactRouter.match)({ routes: _routes.routes, location: location }, function (error, redirectLocation, renderProps) {
+                return _react2["default"].createElement(_reactRouter.RoutingContext, renderProps);
+            });
+
+            //return (
+            //    <div>
+            //        <h1>Master page</h1>
+            //        <div id="app" dangerouslySetInnerHTML={this.children()}></div>
+            //        <script type="text/javascript" dangerouslySetInnerHTML={this.stringify()} />
+            //    </div>
+            //)
         }
     }]);
 

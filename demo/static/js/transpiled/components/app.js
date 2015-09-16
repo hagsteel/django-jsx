@@ -18,52 +18,81 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _routers = require('./routers');
+var _reactRouter = require('react-router');
 
-var _routers2 = _interopRequireDefault(_routers);
+//import routers from "./routers"
 
 var App = (function (_React$Component) {
     function App(props) {
         _classCallCheck(this, App);
 
         _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
-        this.updateUrl = this.updateUrl.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.state = { pathname: props.pathname || '/' };
+        //this.updateUrl = this.updateUrl.bind(this);
+        //this.handleClick = this.handleClick.bind(this);
+        //this.state = {pathname: props.pathname || '/'};
     }
 
     _inherits(App, _React$Component);
 
     _createClass(App, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this = this;
-
-            window.onpopstate = function (e) {
-                _this.updateUrl(window.location.pathname);
-            };
-        }
-    }, {
-        key: 'handleClick',
-        value: function handleClick(e) {
-            e.preventDefault();
-            window.history.pushState(null, null, e.target.pathname);
-            this.updateUrl(e.target.pathname);
-        }
-    }, {
-        key: 'updateUrl',
-        value: function updateUrl(pathname) {
-            this.setState({ pathname: pathname });
-        }
-    }, {
-        key: 'getPathName',
-        value: function getPathName() {
-            return this.state.pathname;
-        }
-    }, {
         key: 'render',
+
+        //handleClick (e) {
+        //    e.preventDefault();
+        //    window.history.pushState(null, null, e.target.pathname);
+        //    this.updateUrl(e.target.pathname);
+        //}
+        //
+        //updateUrl (pathname) {
+        //    this.setState({pathname: pathname});
+        //}
+        //
+        //getPathName () {
+        //    return this.state.pathname;
+        //}
+
         value: function render() {
-            return _react2['default'].createElement(_routers2['default'].getComponent(this.getPathName()), { data: this.props, handleClick: this.handleClick });
+            return _react2['default'].createElement(
+                'div',
+                null,
+                _react2['default'].createElement(
+                    'h1',
+                    null,
+                    'App'
+                ),
+                _react2['default'].createElement(
+                    'ul',
+                    null,
+                    _react2['default'].createElement(
+                        'li',
+                        null,
+                        _react2['default'].createElement(
+                            _reactRouter.Link,
+                            { to: '/' },
+                            'Home'
+                        )
+                    ),
+                    _react2['default'].createElement(
+                        'li',
+                        null,
+                        _react2['default'].createElement(
+                            _reactRouter.Link,
+                            { to: '/form/' },
+                            'Form'
+                        )
+                    ),
+                    _react2['default'].createElement(
+                        'li',
+                        null,
+                        _react2['default'].createElement(
+                            _reactRouter.Link,
+                            { to: '/about/' },
+                            'About'
+                        )
+                    )
+                ),
+                this.props.children
+            );
         }
     }]);
 
@@ -72,3 +101,8 @@ var App = (function (_React$Component) {
 
 exports['default'] = App;
 module.exports = exports['default'];
+/* change the <a>s to <Links>s */ /*
+                                  next we replace `<Child>` with `this.props.children`
+                                  the router will figure out the children for us
+                                  */
+//React.createElement(routers.getComponent(this.getPathName()), {data: this.props, handleClick: this.handleClick})

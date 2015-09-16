@@ -1,7 +1,5 @@
-import createLocation from 'history/lib/createLocation'
 import React from "react";
 import App from "../app"
-import { RoutingContext, match } from 'react-router'
 
 
 export default class Base extends React.Component {
@@ -14,32 +12,18 @@ export default class Base extends React.Component {
     }
 
     children() {
-        //const app = React.createFactory(App);
-        //return {__html: React.renderToString(app(this.props))};
-
-        return {__html: <RoutingContext {...this.props}/>}
+        const app = React.createFactory(App);
+        return {__html: React.renderToString(app(this.props))};
     }
 
     render() {
-        match({ routes, location }, (error, redirectLocation, renderProps) => {
-
-        });
-
-
         return (
-            <RoutingContext {...this.props}>
-                <h1>Base component</h1>
-                {this.props.children}
-            </RoutingContext>
-        );
-
-        //return (
-        //    <div>
-        //        <h1>Master page</h1>
-        //        <div id="app" dangerouslySetInnerHTML={this.children()}></div>
-        //        <script type="text/javascript" dangerouslySetInnerHTML={this.stringify()} />
-        //    </div>
-        //)
+            <div>
+                <h1>Master page</h1>
+                <div id="app" dangerouslySetInnerHTML={this.children()}></div>
+                <script type="text/javascript" dangerouslySetInnerHTML={this.stringify()} />
+            </div>
+        )
     }
 }
 
