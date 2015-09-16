@@ -11,8 +11,8 @@ class JsTemplateException(Exception):
 
 
 class TemplateClient():
-    def render_template(self, file_path, context=None, render_static=False):
-        return render_template(file_path, context, render_static)
+    def render_template(self, file_path, context=None, request_data=None):
+        return render_template(file_path, context, request_data)
 
 
 def receive(sock):
@@ -25,13 +25,13 @@ def receive(sock):
     return ''.join(message)
 
 
-def render_template(file_path, context=None, render_static=False):
+def render_template(file_path, context=None, request_data=None):
     sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     sock.connect(server_address)
 
     data = {
         'template': file_path,
-        'render_static': render_static,
+        'request': request_data,
         'context': context
     }
     message = json.dumps(data).encode()

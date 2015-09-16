@@ -12,7 +12,9 @@
   "author": "Jonas Hagstedt <hagstedt@gmail.com> (https://github.com/jonashagstedt)",
   "license": "BSD",
   "dependencies": {
+    "history": "^1.9.1",
     "react": "^0.13.3",
+    "react-router": "^1.0.0-rc1",
     "react-widgets": "^2.8.1",
     "wildjs": "wildfish/wildjs"
   },

@@ -27,17 +27,19 @@ class JsTemplate(object):
         self.template_path = template_path
 
     def render(self, context=None, request=None):
-        render_static = False
+        request_data = {}
 
         if context is None:
             context = {}
         if request is not None:
-            if 'view' in context:
-                view = context.pop('view')
-                if hasattr(view, 'render_static'):
-                    render_static = view.render_static
             context['csrf_input'] = csrf_input(request)
             context['csrf_token'] = get_token(request)
 
+            request_data['path'] = request.path
+            request_data['absolute_uri'] = request.build_absolute_uri()
+
+        if 'view' in context:
+            context.pop('view')
+
         client = TemplateClient()
-        return client.render_template(self.template_path, context, render_static)
+        return client.render_template(self.template_path, context, request_data)

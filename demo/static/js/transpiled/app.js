@@ -18,9 +18,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _routers = require('./routers');
+var _reactRouter = require('react-router');
 
-var _routers2 = _interopRequireDefault(_routers);
+//import routers from "./routers"
 
 var App = (function (_React$Component) {
     function App(props) {
@@ -54,7 +54,47 @@ var App = (function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2['default'].createElement(_routers2['default'].getComponent(this.getPathName()), { data: this.props, handleClick: this.handleClick });
+            return _react2['default'].createElement(
+                'div',
+                null,
+                _react2['default'].createElement(
+                    'h1',
+                    null,
+                    'App'
+                ),
+                _react2['default'].createElement(
+                    'ul',
+                    null,
+                    _react2['default'].createElement(
+                        'li',
+                        null,
+                        _react2['default'].createElement(
+                            _reactRouter.Link,
+                            { to: '/' },
+                            'Home'
+                        )
+                    ),
+                    _react2['default'].createElement(
+                        'li',
+                        null,
+                        _react2['default'].createElement(
+                            _reactRouter.Link,
+                            { to: '/form/' },
+                            'Form'
+                        )
+                    ),
+                    _react2['default'].createElement(
+                        'li',
+                        null,
+                        _react2['default'].createElement(
+                            _reactRouter.Link,
+                            { to: '/about/' },
+                            'About'
+                        )
+                    )
+                ),
+                this.props.children
+            );
         }
     }]);
 
@@ -63,3 +103,8 @@ var App = (function (_React$Component) {
 
 exports['default'] = App;
 module.exports = exports['default'];
+/* change the <a>s to <Links>s */ /*
+                                  next we replace `<Child>` with `this.props.children`
+                                  the router will figure out the children for us
+                                  */
+//React.createElement(routers.getComponent(this.getPathName()), {data: this.props, handleClick: this.handleClick})

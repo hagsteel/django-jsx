@@ -21,6 +21,7 @@ def _get_template_path(template_name):
 
 @register.simple_tag(takes_context=True)
 def include_js(context, template_name, **kwargs):
+    request = context.get('request')
     template_path = _get_template_path(template_name)
     template = JsTemplate(template_path)
-    return template.render(kwargs)
+    return template.render(kwargs, request=request)

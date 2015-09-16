@@ -41,11 +41,11 @@ var server = _net2['default'].createServer(function (socket) {
     socket.on('data', function (data) {
         try {
             var obj = JSON.parse(data.toString());
+            console.log(obj);
             var renderedTemplate = renderer.render(obj.template, obj.context);
             socket.write('0' + renderedTemplate);
         } catch (ex) {
             socket.write('1' + ex.stack);
-            //console.log(ex.stack);
         } finally {
             socket.end();
         }
