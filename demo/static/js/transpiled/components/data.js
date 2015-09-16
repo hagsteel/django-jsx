@@ -44,9 +44,49 @@ var Data = (function (_React$Component) {
             }
         }
     }, {
+        key: 'fetchNext',
+        value: function fetchNext() {
+            var _this2 = this;
+
+            var url = this.state.data.data_list.next;
+            _wildjs2['default'].rest.get(url).then(function (response) {
+                _this2.setState({ data: { data_list: response } });
+            });
+        }
+    }, {
+        key: 'fetchPrev',
+        value: function fetchPrev() {
+            var _this3 = this;
+
+            var url = this.state.data.data_list.previous;
+            _wildjs2['default'].rest.get(url).then(function (response) {
+                _this3.setState({ data: { data_list: response } });
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var dataList = this.state.data.data_list || [];
+            var dataList = this.state.data.data_list || { results: [] };
+
+            var next = '';
+            var prev = '';
+
+            if (dataList.next) {
+                next = _react2['default'].createElement(
+                    'button',
+                    { onClick: this.fetchNext.bind(this) },
+                    'Next'
+                );
+            }
+
+            if (dataList.previous) {
+                prev = _react2['default'].createElement(
+                    'button',
+                    { onClick: this.fetchPrev.bind(this) },
+                    'Prev'
+                );
+            }
+
             return _react2['default'].createElement(
                 'div',
                 null,
@@ -91,6 +131,8 @@ var Data = (function (_React$Component) {
                         'Data'
                     )
                 ),
+                next,
+                prev,
                 _react2['default'].createElement(
                     'ul',
                     null,
