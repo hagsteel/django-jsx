@@ -1,9 +1,7 @@
 import net from 'net';
 import fs from 'fs';
-//import {renderer} from './renderer/react/react-tempate-renderer.js'
 
-const reactRendererPath = './renderer/react/react-tempate-renderer.js'
-
+const reactRendererPath = './renderer/react/react-tempate-renderer.js';
 
 
 const getOptions = () => {
@@ -34,8 +32,7 @@ const server = net.createServer((socket) => {
     socket.on("data", (data) => {
         try {
             const obj = JSON.parse(data.toString());
-            console.log(obj);
-            const renderedTemplate = renderer.render(obj.template, obj.context);
+            const renderedTemplate = renderer.render(obj.template, obj.context, obj.request);
             socket.write("0" + renderedTemplate);
         } catch (ex) {
             socket.write("1" + ex.stack);

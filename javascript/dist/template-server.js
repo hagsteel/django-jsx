@@ -10,8 +10,6 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-//import {renderer} from './renderer/react/react-tempate-renderer.js'
-
 var reactRendererPath = './renderer/react/react-tempate-renderer.js';
 
 var getOptions = function getOptions() {
@@ -41,8 +39,10 @@ var server = _net2['default'].createServer(function (socket) {
     socket.on('data', function (data) {
         try {
             var obj = JSON.parse(data.toString());
-            console.log(obj);
-            var renderedTemplate = renderer.render(obj.template, obj.context);
+
+            console.log(renderer);
+
+            var renderedTemplate = renderer.render(obj.template, obj.context, obj.request);
             socket.write('0' + renderedTemplate);
         } catch (ex) {
             socket.write('1' + ex.stack);

@@ -10,13 +10,13 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _templateLoader = require("./template-loader");
-
 var renderer = {
     render: function render(templatePath, context, request) {
-        var Component = _templateLoader.loader.load(templatePath);
-        return _react2["default"].renderToStaticMarkup(Component(context));
+        context.request = request;
+        var Component = require(templatePath);
+        return _react2["default"].renderToStaticMarkup(_react2["default"].createElement(Component, context));
     }
 };
 
-exports.renderer = renderer;
+exports["default"] = renderer;
+module.exports = exports["default"];

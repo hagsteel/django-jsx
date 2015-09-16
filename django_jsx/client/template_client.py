@@ -37,6 +37,10 @@ def render_template(file_path, context=None, request_data=None):
     message = json.dumps(data).encode()
     sock.send(message)
     response = receive(sock)
+
+    if not response:
+        raise JsTemplateException('Empty template response')
+
     status = response[0]
 
     if status != '0':

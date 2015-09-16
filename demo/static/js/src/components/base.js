@@ -21,6 +21,11 @@ export default class Base extends React.Component {
     }
 
     render() {
+        match({ routes, location }, (error, redirectLocation, renderProps) => {
+
+        });
+
+
         return (
             <RoutingContext {...this.props}>
                 <h1>Base component</h1>

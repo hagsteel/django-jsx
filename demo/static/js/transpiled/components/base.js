@@ -53,6 +53,8 @@ var Base = (function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            (0, _reactRouter.match)({ routes: routes, location: location }, function (error, redirectLocation, renderProps) {});
+
             return _react2["default"].createElement(
                 _reactRouter.RoutingContext,
                 this.props,

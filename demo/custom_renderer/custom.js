@@ -1,10 +1,13 @@
-var renderer = {
-    render: function(templatePath, context) {
-        var template = require(templatePath);
-        return 'testing custom template';
-        //return template.render(context);
+import React from "react";
+
+
+const renderer = {
+    render(templatePath, context, request) {
+        context.request = request;
+        const Component = require(templatePath);
+        return React.renderToStaticMarkup(<Component {...context} />);
     }
 };
 
 
-module.exports = renderer;
+export default renderer;
