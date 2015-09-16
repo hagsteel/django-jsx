@@ -40,7 +40,7 @@ var Form = (function (_React$Component) {
 
             e.preventDefault();
             var val = e.target.getElementsByTagName("input")[0].value;
-            _wildjs2["default"].rest.post("/api/", { value: val }).then(function (response) {
+            _wildjs2["default"].rest.post("/api/form/", { value: val }).then(function (response) {
                 _this.setState({ message: response.value });
             });
         }

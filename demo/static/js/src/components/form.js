@@ -12,7 +12,7 @@ export default class Form extends React.Component {
     submitForm(e) {
         e.preventDefault();
         const val = e.target.getElementsByTagName("input")[0].value;
-        wildjs.rest.post('/api/', {value: val}).then((response) => {
+        wildjs.rest.post('/api/form/', {value: val}).then((response) => {
             this.setState({message: response.value});
         });
     }

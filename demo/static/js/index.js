@@ -8,12 +8,3 @@ React.render(
     Component(window.props),
     document.getElementById("app")
 );
-
-//
-//window.onpushstate = (e) => {
-//    console.log('changey');
-//};
-//
-//window.onpopstate = (e) => {
-//    console.log('changey');
-//};

@@ -19,6 +19,7 @@ export default class Home extends React.Component {
                 <p>{this.state.data.date}</p>
                 <p><a href="/about/" onClick={this.state.handleClick}>About</a></p>
                 <p><a href="/form/" onClick={this.state.handleClick}>Form</a></p>
+                <p><a href="/data/" onClick={this.state.handleClick}>Data</a></p>
             </div>
         )
     }

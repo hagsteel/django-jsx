@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'rest_framework',
 
     'django_jsx',
+    'demo',
 )
 
 MIDDLEWARE_CLASSES = (

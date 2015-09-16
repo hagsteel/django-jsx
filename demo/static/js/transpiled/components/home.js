@@ -69,6 +69,15 @@ var Home = (function (_React$Component) {
                         { href: "/form/", onClick: this.state.handleClick },
                         "Form"
                     )
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                        "a",
+                        { href: "/data/", onClick: this.state.handleClick },
+                        "Data"
+                    )
                 )
             );
         }
