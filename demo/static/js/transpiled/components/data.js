@@ -22,6 +22,10 @@ var _wildjs = require('wildjs');
 
 var _wildjs2 = _interopRequireDefault(_wildjs);
 
+var _nav = require('./nav');
+
+var _nav2 = _interopRequireDefault(_nav);
+
 var Data = (function (_React$Component) {
     function Data(props) {
         _classCallCheck(this, Data);
@@ -73,16 +77,16 @@ var Data = (function (_React$Component) {
 
             if (dataList.next) {
                 next = _react2['default'].createElement(
-                    'button',
-                    { onClick: this.fetchNext.bind(this) },
+                    'a',
+                    { href: dataList.next, onClick: this.state.handleClick },
                     'Next'
                 );
             }
 
             if (dataList.previous) {
                 prev = _react2['default'].createElement(
-                    'button',
-                    { onClick: this.fetchPrev.bind(this) },
+                    'a',
+                    { href: dataList.previous, onClick: this.state.handleClick },
                     'Prev'
                 );
             }
@@ -95,42 +99,7 @@ var Data = (function (_React$Component) {
                     null,
                     'List of data'
                 ),
-                _react2['default'].createElement(
-                    'p',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '/', onClick: this.state.handleClick },
-                        'Home'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'p',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '/about/', onClick: this.state.handleClick },
-                        'About'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'p',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '/form/', onClick: this.state.handleClick },
-                        'Form'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'p',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '/data/', onClick: this.state.handleClick },
-                        'Data'
-                    )
-                ),
+                _react2['default'].createElement(_nav2['default'], { handleClick: this.props.handleClick }),
                 next,
                 prev,
                 _react2['default'].createElement(

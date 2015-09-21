@@ -18,13 +18,13 @@ export default class App extends React.Component {
     handleClick (e) {
         if (window.history.pushState !== undefined) {
             e.preventDefault();
-            window.history.pushState(null, null, e.target.pathname);
-            this.updateUrl(e.target.pathname);
+            window.history.pushState(null, null, e.target.pathname + e.target.search);
+            this.updateUrl(e.target.pathname, e.target.search);
         }
     }
 
-    updateUrl (pathname) {
-        this.setState({pathname: pathname});
+    updateUrl (pathname, search) {
+        this.setState({pathname, search});
     }
 
     getPathName () {

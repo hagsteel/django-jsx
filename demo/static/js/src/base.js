@@ -1,5 +1,5 @@
 import React from "react";
-import App from "../app"
+import App from "./app"
 
 
 export default class Base extends React.Component {

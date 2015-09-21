@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import Nav from './nav'
 
 
 export default class Home extends React.Component {
@@ -17,9 +18,7 @@ export default class Home extends React.Component {
                 <h1>Home</h1>
                 <p>This is the home view</p>
                 <p>{this.state.data.date}</p>
-                <p><a href="/about/" onClick={this.state.handleClick}>About</a></p>
-                <p><a href="/form/" onClick={this.state.handleClick}>Form</a></p>
-                <p><a href="/data/" onClick={this.state.handleClick}>Data</a></p>
+                <Nav handleClick={this.state.handleClick} />
             </div>
         )
     }

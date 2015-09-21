@@ -1,5 +1,6 @@
 import React from 'react';
 import wildjs from 'wildjs'
+import Nav from './nav'
 
 
 export default class Data extends React.Component {
@@ -37,20 +38,17 @@ export default class Data extends React.Component {
         let prev = "";
 
         if (dataList.next) {
-            next = <button onClick={this.fetchNext.bind(this)}>Next</button>
+            next = <a href={dataList.next} onClick={this.state.handleClick}>Next</a>
         }
 
         if (dataList.previous) {
-            prev = <button onClick={this.fetchPrev.bind(this)}>Prev</button>
+            prev = <a href={dataList.previous} onClick={this.state.handleClick}>Prev</a>
         }
 
         return (
             <div>
                 <h2>List of data</h2>
-                <p><a href="/" onClick={this.state.handleClick}>Home</a></p>
-                <p><a href="/about/" onClick={this.state.handleClick}>About</a></p>
-                <p><a href="/form/" onClick={this.state.handleClick}>Form</a></p>
-                <p><a href="/data/" onClick={this.state.handleClick}>Data</a></p>
+                <Nav handleClick={this.props.handleClick} />
                 {next}
                 {prev}
                 <ul>

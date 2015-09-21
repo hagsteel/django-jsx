@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import Nav from './nav'
 
 
 export default class About extends React.Component {
@@ -12,7 +13,7 @@ export default class About extends React.Component {
         return (
             <div>
                 <h2>About</h2>
-                <p><a href="/" onClick={this.state.handleClick}>Home</a></p>
+                <Nav handleClick={this.props.handleClick} />
                 {data.map((d, i) => {
                     return <p key={"p-" + i}>{d}</p>
                 })}

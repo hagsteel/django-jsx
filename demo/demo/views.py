@@ -40,10 +40,10 @@ class PaginatedData(TemplateView):
         data = api.dispatch(api.request).data
 
         # Dodgy midnight hacks
-        if data.get('next'):
-            data['next'] = data['next'].replace('/data/', '/api/list/')
-        if data.get('previous'):
-            data['previous'] = data['previous'].replace('/data/', '/api/list/')
+        # if data.get('next'):
+        #     data['next'] = data['next'].replace('/data/', '/api/list/')
+        # if data.get('previous'):
+        #     data['previous'] = data['previous'].replace('/data/', '/api/list/')
 
         context['data_list'] = data
         return context

@@ -48,14 +48,14 @@ var App = (function (_React$Component) {
         value: function handleClick(e) {
             if (window.history.pushState !== undefined) {
                 e.preventDefault();
-                window.history.pushState(null, null, e.target.pathname);
-                this.updateUrl(e.target.pathname);
+                window.history.pushState(null, null, e.target.pathname + e.target.search);
+                this.updateUrl(e.target.pathname, e.target.search);
             }
         }
     }, {
         key: 'updateUrl',
-        value: function updateUrl(pathname) {
-            this.setState({ pathname: pathname });
+        value: function updateUrl(pathname, search) {
+            this.setState({ pathname: pathname, search: search });
         }
     }, {
         key: 'getPathName',

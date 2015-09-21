@@ -1,5 +1,6 @@
 import React from 'react';
 import wildjs from "wildjs";
+import Nav from './nav'
 
 
 export default class Form extends React.Component {
@@ -23,8 +24,7 @@ export default class Form extends React.Component {
                 <h4>{this.state.message}</h4>
                 <input type="text" name="foo" id="foo" />
                 <button type='submit'>Save</button>
-                <p><a href="/about/" onClick={this.state.handleClick}>About</a></p>
-                <p><a href="/form/" onClick={this.state.handleClick}>Form</a></p>
+                <Nav handleClick={this.props.handleClick} />
             </form>
         )
     }
