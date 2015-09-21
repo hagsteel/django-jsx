@@ -6,7 +6,9 @@ export default class App extends React.Component {
         super(props);
         this.updateUrl = this.updateUrl.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.state = {pathname: props.pathname || '/'};
+
+        // Get the initial path name from the server side request
+        this.state = {pathname: props._request.path || '/'};
     }
 
     componentDidMount () {

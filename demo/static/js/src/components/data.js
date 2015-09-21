@@ -7,6 +7,7 @@ export default class Data extends React.Component {
     constructor (props) {
         super(props);
         this.state = props;
+        this.fetchNext = this.fetchNext.bind(this);
     }
 
     componentDidMount() {
@@ -17,11 +18,14 @@ export default class Data extends React.Component {
         }
     }
 
-    fetchNext() {
+    fetchNext(e) {
+        e.preventDefault();
+        //console.log('getting next');
         const url = this.state.data.data_list.next;
-        wildjs.rest.get(url).then((response) => {
-            this.setState({data: {data_list: response}});
-        });
+        console.log(url);
+        //wildjs.rest.get(url).then((response) => {
+        //    this.setState({data: {data_list: response}});
+        //});
     }
 
     fetchPrev() {
@@ -38,7 +42,7 @@ export default class Data extends React.Component {
         let prev = "";
 
         if (dataList.next) {
-            next = <a href={dataList.next} onClick={this.state.handleClick}>Next</a>
+            next = <a href={dataList.next} onClick={this.fetchNext}>Next</a>
         }
 
         if (dataList.previous) {

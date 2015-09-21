@@ -15,6 +15,7 @@ var _templateLoader = require("./template-loader");
 var renderer = {
     render: function render(templatePath, context, request) {
         var Component = _templateLoader.loader.load(templatePath);
+        context._request = request;
         return _react2["default"].renderToStaticMarkup(Component(context));
     }
 };

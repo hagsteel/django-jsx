@@ -8,10 +8,6 @@ from django_jsx.template.engine import JsEngine
 
 
 class JsTemplates(BaseEngine):
-    # Name of the subdirectory containing the templates for this engine
-    # inside an installed application.
-    app_dirname = 'foobar'
-
     def __init__(self, params):
         params = params.copy()
         options = params.pop('OPTIONS').copy()
@@ -27,19 +23,14 @@ class JsTemplate(object):
         self.template_path = template_path
 
     def render(self, context=None, request=None):
+        context = context.copy()
         request_data = {}
 
-        if context is None:
-            context = {}
         if request is not None:
-            context['csrf_input'] = csrf_input(request)
             context['csrf_token'] = get_token(request)
 
             request_data['path'] = request.path
             request_data['absolute_uri'] = request.build_absolute_uri()
-
-        if 'view' in context:
-            context.pop('view')
 
         client = TemplateClient()
         return client.render_template(self.template_path, context, request_data)

@@ -1,9 +1,13 @@
-#!/usr/bin/env python3.4
 import socket
 import json
 
+_exclude_from_context = ['request', 'csrf_input', 'DEFAULT_MESSAGE_LEVELS', 'False', 'True', 'None', 'view']
 server_address = '/tmp/template-server.sock'
 BUFFER_SIZE = 8192
+
+
+def _make_none(obj):
+    return None
 
 
 class JsTemplateException(Exception):
@@ -25,6 +29,17 @@ def receive(sock):
     return ''.join(message)
 
 
+def clean_context(context):
+    if context is None:
+        return {}
+
+    for ex in _exclude_from_context:
+        if ex in context:
+            del context[ex]
+
+    return context
+
+
 def render_template(file_path, context=None, request_data=None):
     sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     sock.connect(server_address)
@@ -32,9 +47,10 @@ def render_template(file_path, context=None, request_data=None):
     data = {
         'template': file_path,
         'request': request_data,
-        'context': context
+        'context': clean_context(context)
     }
-    message = json.dumps(data).encode()
+
+    message = json.dumps(data, default=_make_none).encode()
     sock.send(message)
     response = receive(sock)
 

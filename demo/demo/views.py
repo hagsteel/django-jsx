@@ -1,5 +1,7 @@
-from django.views.generic import TemplateView
-from .api import DataSerializer, DataListApi
+from django.core.urlresolvers import reverse
+from django.utils.timezone import now
+from django.views.generic import TemplateView, View
+from .api import DataListApi, get_paginated_data
 from .models import Data
 
 
@@ -8,6 +10,7 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['date'] = str(now())
         return context
 
 
@@ -17,7 +20,6 @@ class About(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['data'] = [1, 2, 3]
-        context['pathname'] = '/about/'
         return context
 
 
@@ -26,7 +28,6 @@ class Form(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pathname'] = '/form/'
         return context
 
 
@@ -35,15 +36,5 @@ class PaginatedData(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pathname'] = '/data/'
-        api = DataListApi(request=self.request)
-        data = api.dispatch(api.request).data
-
-        # Dodgy midnight hacks
-        # if data.get('next'):
-        #     data['next'] = data['next'].replace('/data/', '/api/list/')
-        # if data.get('previous'):
-        #     data['previous'] = data['previous'].replace('/data/', '/api/list/')
-
-        context['data_list'] = data
+        context['data_list'] = get_paginated_data(self.request.GET.get('page') or 1)
         return context

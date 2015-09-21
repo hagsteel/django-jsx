@@ -32,6 +32,7 @@ var Data = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(Data.prototype), 'constructor', this).call(this, props);
         this.state = props;
+        this.fetchNext = this.fetchNext.bind(this);
     }
 
     _inherits(Data, _React$Component);
@@ -49,22 +50,23 @@ var Data = (function (_React$Component) {
         }
     }, {
         key: 'fetchNext',
-        value: function fetchNext() {
-            var _this2 = this;
-
+        value: function fetchNext(e) {
+            e.preventDefault();
+            //console.log('getting next');
             var url = this.state.data.data_list.next;
-            _wildjs2['default'].rest.get(url).then(function (response) {
-                _this2.setState({ data: { data_list: response } });
-            });
+            console.log(url);
+            //wildjs.rest.get(url).then((response) => {
+            //    this.setState({data: {data_list: response}});
+            //});
         }
     }, {
         key: 'fetchPrev',
         value: function fetchPrev() {
-            var _this3 = this;
+            var _this2 = this;
 
             var url = this.state.data.data_list.previous;
             _wildjs2['default'].rest.get(url).then(function (response) {
-                _this3.setState({ data: { data_list: response } });
+                _this2.setState({ data: { data_list: response } });
             });
         }
     }, {
@@ -78,7 +80,7 @@ var Data = (function (_React$Component) {
             if (dataList.next) {
                 next = _react2['default'].createElement(
                     'a',
-                    { href: dataList.next, onClick: this.state.handleClick },
+                    { href: dataList.next, onClick: this.fetchNext },
                     'Next'
                 );
             }

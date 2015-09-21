@@ -5,7 +5,7 @@ import Data from './components/data'
 
 
 const router = {
-    getComponent(pathname, search) {
+    getComponent(pathname) {
         switch (pathname) {
             case '/':
                 return Home;

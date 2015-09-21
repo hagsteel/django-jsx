@@ -1,9 +1,10 @@
 # Django JavaScript template engine
 
-Requires Django 1.8 (because you want to use multiple template engines).
+Use Django 1.8 if you want to use multiple template engines.
 
-*Note* The server has to be restarted for template updates as the templates are cached on the template server.
+*Note* The server has to be restarted for template updates as the templates are cached on the template server if you are using React.
 
+It's important to know that the context is available on the client side, so putting sensitive data in the context is a bad idea.
 
 ## Why?
 

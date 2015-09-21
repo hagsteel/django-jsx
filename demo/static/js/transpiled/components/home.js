@@ -54,6 +54,7 @@ var Home = (function (_React$Component) {
                 _react2['default'].createElement(
                     'p',
                     null,
+                    'Date: ',
                     this.state.data.date
                 ),
                 _react2['default'].createElement(_nav2['default'], { handleClick: this.state.handleClick })

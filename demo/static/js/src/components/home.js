@@ -17,7 +17,7 @@ export default class Home extends React.Component {
             <div>
                 <h1>Home</h1>
                 <p>This is the home view</p>
-                <p>{this.state.data.date}</p>
+                <p>Date: {this.state.data.date}</p>
                 <Nav handleClick={this.state.handleClick} />
             </div>
         )

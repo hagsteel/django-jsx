@@ -24,4 +24,7 @@ def include_js(context, template_name, **kwargs):
     request = context.get('request')
     template_path = _get_template_path(template_name)
     template = JsTemplate(template_path)
-    return template.render(kwargs, request=request)
+    template_context = context.flatten()
+    template_context.update(kwargs)
+    context.update(kwargs)
+    return template.render(template_context, request=request)

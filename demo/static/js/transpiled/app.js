@@ -29,7 +29,9 @@ var App = (function (_React$Component) {
         _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
         this.updateUrl = this.updateUrl.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.state = { pathname: props.pathname || '/' };
+
+        // Get the initial path name from the server side request
+        this.state = { pathname: props._request.path || '/' };
     }
 
     _inherits(App, _React$Component);

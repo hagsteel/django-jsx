@@ -23,7 +23,7 @@ var _componentsData = require('./components/data');
 var _componentsData2 = _interopRequireDefault(_componentsData);
 
 var router = {
-    getComponent: function getComponent(pathname, search) {
+    getComponent: function getComponent(pathname) {
         switch (pathname) {
             case '/':
                 return _componentsHome2['default'];
