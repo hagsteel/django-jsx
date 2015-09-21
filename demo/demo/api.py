@@ -20,24 +20,34 @@ def serialize(instance):
 
 
 def get_paginated_data(page_num=1, paginate_by=3):
+    page_num = page_num or 1
+    try:
+        page_num = int(page_num)
+    except ValueError:
+        page_num = 1
+
     paginator = Paginator(object_list=Data.objects.all(), per_page=paginate_by)
     page = paginator.page(page_num)
 
-    data = {'results': [serialize(d) for d in page.object_list]}
+    data = {
+        'results': [serialize(d) for d in page.object_list],
+        'next': None,
+        'previous': None,
+        'api_url': reverse('data_list'),
+        'page_num': page_num
+    }
 
     if page.has_next():
-        data['next'] = '{}?page={}'.format(reverse('data_list'), page_num + 1)
-    else:
-        data['next'] = None
+        # data['next'] = '{}?page={}'.format(reverse('data_list'), page_num + 1)
+        data['next'] = '?page={}'.format(page_num + 1)
 
     if page.has_previous():
-        data['previous'] = '{}?page={}'.format(reverse('data_list'), page_num - 1)
-    else:
-        data['previous'] = None
+        # data['previous'] = '{}?page={}'.format(reverse('data_list'), page_num - 1)
+        data['previous'] = '?page={}'.format(page_num - 1)
 
     return data
 
 class DataListApi(View):
     def get(self, request, **kwargs):
-        data = get_paginated_data()
+        data = get_paginated_data(request.GET.get('page'))
         return HttpResponse(content=json.dumps(data), content_type='application/json')

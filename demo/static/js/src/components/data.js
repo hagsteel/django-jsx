@@ -7,7 +7,7 @@ export default class Data extends React.Component {
     constructor (props) {
         super(props);
         this.state = props;
-        this.fetchNext = this.fetchNext.bind(this);
+        this.click = this.click.bind(this);
     }
 
     componentDidMount() {
@@ -18,21 +18,21 @@ export default class Data extends React.Component {
         }
     }
 
-    fetchNext(e) {
+    click(page, e) {
         e.preventDefault();
-        //console.log('getting next');
-        const url = this.state.data.data_list.next;
-        console.log(url);
-        //wildjs.rest.get(url).then((response) => {
-        //    this.setState({data: {data_list: response}});
-        //});
-    }
+        let url = this.state.data.data_list.api_url;
+        if (page !== null) {
+            url = this.state.data.data_list.api_url + page;
+        }
 
-    fetchPrev() {
-        const url = this.state.data.data_list.previous;
+        console.log(url);
+
         wildjs.rest.get(url).then((response) => {
+            console.log('got it');
             this.setState({data: {data_list: response}});
         });
+
+        this.state.handleClick(e);
     }
 
     render() {
@@ -42,11 +42,11 @@ export default class Data extends React.Component {
         let prev = "";
 
         if (dataList.next) {
-            next = <a href={dataList.next} onClick={this.fetchNext}>Next</a>
+            next = <a href={dataList.next} onClick={this.click.bind(this, dataList.next)}>Next</a>
         }
 
         if (dataList.previous) {
-            prev = <a href={dataList.previous} onClick={this.state.handleClick}>Prev</a>
+            prev = <a href={dataList.previous} onClick={this.click.bind(this, dataList.next)}>Prev</a>
         }
 
         return (

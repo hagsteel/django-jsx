@@ -32,7 +32,7 @@ var Data = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(Data.prototype), 'constructor', this).call(this, props);
         this.state = props;
-        this.fetchNext = this.fetchNext.bind(this);
+        this.click = this.click.bind(this);
     }
 
     _inherits(Data, _React$Component);
@@ -49,25 +49,24 @@ var Data = (function (_React$Component) {
             }
         }
     }, {
-        key: 'fetchNext',
-        value: function fetchNext(e) {
-            e.preventDefault();
-            //console.log('getting next');
-            var url = this.state.data.data_list.next;
-            console.log(url);
-            //wildjs.rest.get(url).then((response) => {
-            //    this.setState({data: {data_list: response}});
-            //});
-        }
-    }, {
-        key: 'fetchPrev',
-        value: function fetchPrev() {
+        key: 'click',
+        value: function click(page, e) {
             var _this2 = this;
 
-            var url = this.state.data.data_list.previous;
+            e.preventDefault();
+            var url = this.state.data.data_list.api_url;
+            if (page !== null) {
+                url = this.state.data.data_list.api_url + page;
+            }
+
+            console.log(url);
+
             _wildjs2['default'].rest.get(url).then(function (response) {
+                console.log('got it');
                 _this2.setState({ data: { data_list: response } });
             });
+
+            this.state.handleClick(e);
         }
     }, {
         key: 'render',
@@ -80,7 +79,7 @@ var Data = (function (_React$Component) {
             if (dataList.next) {
                 next = _react2['default'].createElement(
                     'a',
-                    { href: dataList.next, onClick: this.fetchNext },
+                    { href: dataList.next, onClick: this.click.bind(this, dataList.next) },
                     'Next'
                 );
             }
@@ -88,7 +87,7 @@ var Data = (function (_React$Component) {
             if (dataList.previous) {
                 prev = _react2['default'].createElement(
                     'a',
-                    { href: dataList.previous, onClick: this.state.handleClick },
+                    { href: dataList.previous, onClick: this.click.bind(this, dataList.next) },
                     'Prev'
                 );
             }
