@@ -1,0 +1,4 @@
+django
+pytest-django
+pytest
+pytest-cov

@@ -1,7 +1,7 @@
 import net from 'net';
 import fs from 'fs';
 
-const reactRendererPath = './renderer/react/react-tempate-renderer.js';
+const reactRendererPath = './renderer/react/react-template-renderer.js';
 
 
 const getOptions = () => {

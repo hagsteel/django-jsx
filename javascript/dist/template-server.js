@@ -10,7 +10,7 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var reactRendererPath = './renderer/react/react-tempate-renderer.js';
+var reactRendererPath = './renderer/react/react-template-renderer.js';
 
 var getOptions = function getOptions() {
     if (process.argv.length < 3) {
