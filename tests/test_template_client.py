@@ -4,6 +4,18 @@ from django.conf import settings
 from os.path import join
 
 
+class MockSock():
+    def send(self, message):
+        pass
+
+    def recv(self, buffer_size):
+        return b''
+
+
+def mock_connect():
+    return MockSock()
+
+
 class TestTemplateClient(TestCase):
     def test_make_none(self):
         """
@@ -22,7 +34,7 @@ class TestTemplateClient(TestCase):
         Test render a standard template
         """
         client = template_client.TemplateClient()
-        template_path = join(settings.TEMPLATE_DIR, 'test_component.js')
+        template_path = join(settings.TEMPLATE_DIR, 'test-component.js')
         actual = client.render_template(template_path, {}, {})
         expected = '<span>Test component</span>'
         self.assertEqual(actual, expected)
@@ -56,17 +68,10 @@ class TestTemplateClient(TestCase):
         """
         Make sure an empty response is raised if the template is empty
         """
-        client = template_client.TemplateClient()
-        _rcv = client.receive
-
-        def empty_response(_):
-            return None
-
-        client.receive = empty_response
-
         template_path = join(settings.TEMPLATE_DIR, 'empty-template.js')
+
+        client = template_client.TemplateClient()
+        client.connect = mock_connect
 
         with self.assertRaises(template_client.JsTemplateException):
             client.render_template(template_path, {}, {})
-
-        client.receive = _rcv

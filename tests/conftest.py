@@ -25,6 +25,7 @@ def pytest_configure():
             }
         ],
 
+        DJANGO_ISOMORPHIC_AUTOSTART = False,
         TEMPLATE_DIR = join(BASE_DIR, 'tests', 'templates'),
 
         MIDDLEWARE_CLASSES=(

@@ -31,7 +31,7 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
 
 ## Settings
 
-### Optional
+settings.DJANGO_ISOMORPHIC_AUTOSTART
 
 `DJANGO_ISOMORPHIC_RENDERER`
 Absolute path to an alternative renderer

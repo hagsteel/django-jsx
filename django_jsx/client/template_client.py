@@ -27,16 +27,14 @@ def clean_context(context):
 
 class TemplateClient():
     def render_template(self, file_path, context=None, request_data=None):
-        sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        sock.connect(server_address)
-
         data = {
             'template': file_path,
             'request': request_data,
             'context': clean_context(context)
         }
-
         message = json.dumps(data, default=_make_none).encode()
+
+        sock = self.connect()
         sock.send(message)
         response = self.receive(sock)
 
@@ -50,6 +48,10 @@ class TemplateClient():
 
         return response[1:]
 
+    def connect(self):
+        sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        sock.connect(server_address)
+        return sock
 
     def receive(self, sock):
         message = []
