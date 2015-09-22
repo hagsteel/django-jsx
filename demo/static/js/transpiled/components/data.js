@@ -59,14 +59,13 @@ var Data = (function (_React$Component) {
                 url = this.state.data.data_list.api_url + page;
             }
 
-            console.log(url);
-
             _wildjs2['default'].rest.get(url).then(function (response) {
-                console.log('got it');
+                console.log(response);
                 _this2.setState({ data: { data_list: response } });
             });
 
-            this.state.handleClick(e);
+            window.history.pushState(null, null, e.target.pathname + e.target.search);
+            //this.state.handleClick(e);
         }
     }, {
         key: 'render',
@@ -87,7 +86,7 @@ var Data = (function (_React$Component) {
             if (dataList.previous) {
                 prev = _react2['default'].createElement(
                     'a',
-                    { href: dataList.previous, onClick: this.click.bind(this, dataList.next) },
+                    { href: dataList.previous, onClick: this.click.bind(this, dataList.previous) },
                     'Prev'
                 );
             }

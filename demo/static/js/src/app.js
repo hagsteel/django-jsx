@@ -21,12 +21,12 @@ export default class App extends React.Component {
         if (window.history.pushState !== undefined) {
             e.preventDefault();
             window.history.pushState(null, null, e.target.pathname + e.target.search);
-            this.updateUrl(e.target.pathname, e.target.search);
+            this.updateUrl(e.target.pathname);
         }
     }
 
-    updateUrl (pathname, search) {
-        this.setState({pathname, search});
+    updateUrl (pathname) {
+        this.setState({pathname});
     }
 
     getPathName () {

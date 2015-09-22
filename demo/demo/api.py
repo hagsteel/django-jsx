@@ -38,16 +38,15 @@ def get_paginated_data(page_num=1, paginate_by=3):
     }
 
     if page.has_next():
-        # data['next'] = '{}?page={}'.format(reverse('data_list'), page_num + 1)
         data['next'] = '?page={}'.format(page_num + 1)
 
     if page.has_previous():
-        # data['previous'] = '{}?page={}'.format(reverse('data_list'), page_num - 1)
         data['previous'] = '?page={}'.format(page_num - 1)
 
     return data
 
 class DataListApi(View):
     def get(self, request, **kwargs):
-        data = get_paginated_data(request.GET.get('page'))
+        page_num = request.GET.get('page')
+        data = get_paginated_data(page_num)
         return HttpResponse(content=json.dumps(data), content_type='application/json')

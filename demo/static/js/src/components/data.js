@@ -25,14 +25,13 @@ export default class Data extends React.Component {
             url = this.state.data.data_list.api_url + page;
         }
 
-        console.log(url);
-
         wildjs.rest.get(url).then((response) => {
-            console.log('got it');
+            console.log(response);
             this.setState({data: {data_list: response}});
         });
 
-        this.state.handleClick(e);
+        window.history.pushState(null, null, e.target.pathname + e.target.search);
+        //this.state.handleClick(e);
     }
 
     render() {
@@ -46,7 +45,7 @@ export default class Data extends React.Component {
         }
 
         if (dataList.previous) {
-            prev = <a href={dataList.previous} onClick={this.click.bind(this, dataList.next)}>Prev</a>
+            prev = <a href={dataList.previous} onClick={this.click.bind(this, dataList.previous)}>Prev</a>
         }
 
         return (

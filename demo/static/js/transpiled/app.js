@@ -51,13 +51,13 @@ var App = (function (_React$Component) {
             if (window.history.pushState !== undefined) {
                 e.preventDefault();
                 window.history.pushState(null, null, e.target.pathname + e.target.search);
-                this.updateUrl(e.target.pathname, e.target.search);
+                this.updateUrl(e.target.pathname);
             }
         }
     }, {
         key: 'updateUrl',
-        value: function updateUrl(pathname, search) {
-            this.setState({ pathname: pathname, search: search });
+        value: function updateUrl(pathname) {
+            this.setState({ pathname: pathname });
         }
     }, {
         key: 'getPathName',

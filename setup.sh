@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd javascript && npm run build
-git add .
-git commit -m '$1'
-git push
+cd javascript && npm install
+cd ../demo && ./manage.py migrate
+cd ../demo && ./manage.py makedata
+cd ../demo && ./manage.py runserver
