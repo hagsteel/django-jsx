@@ -51,7 +51,7 @@ var Base = (function (_React$Component) {
                 _react2["default"].createElement(
                     "h1",
                     null,
-                    "Master page"
+                    "Base component"
                 ),
                 _react2["default"].createElement("div", { id: "app", dangerouslySetInnerHTML: this.children() }),
                 _react2["default"].createElement("script", { type: "text/javascript", dangerouslySetInnerHTML: this.stringify() })

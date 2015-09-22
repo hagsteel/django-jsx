@@ -19,7 +19,7 @@ export default class Base extends React.Component {
     render() {
         return (
             <div>
-                <h1>Master page</h1>
+                <h1>Base component</h1>
                 <div id="app" dangerouslySetInnerHTML={this.children()}></div>
                 <script type="text/javascript" dangerouslySetInnerHTML={this.stringify()} />
             </div>

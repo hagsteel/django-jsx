@@ -33,9 +33,6 @@ var Home = (function (_React$Component) {
     _inherits(Home, _React$Component);
 
     _createClass(Home, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {}
-    }, {
         key: 'render',
         value: function render() {
             return _react2['default'].createElement(
@@ -50,12 +47,6 @@ var Home = (function (_React$Component) {
                     'p',
                     null,
                     'This is the home view'
-                ),
-                _react2['default'].createElement(
-                    'p',
-                    null,
-                    'Date: ',
-                    this.state.data.date
                 ),
                 _react2['default'].createElement(_nav2['default'], { handleClick: this.state.handleClick })
             );

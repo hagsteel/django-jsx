@@ -55,6 +55,11 @@ var Form = (function (_React$Component) {
                 'form',
                 { method: 'post', onSubmit: this.submitForm },
                 _react2['default'].createElement(
+                    'h1',
+                    null,
+                    'Form'
+                ),
+                _react2['default'].createElement(
                     'h4',
                     null,
                     this.state.message

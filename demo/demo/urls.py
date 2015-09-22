@@ -2,11 +2,10 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
 from .api import FormApi, DataListApi
-from .views import Home, About, Form, PaginatedData
+from .views import Home, Form, PaginatedData
 
 urlpatterns = [
     url(r'^$', Home.as_view(), name='home'),
-    url(r'^about/$', About.as_view(), name='about'),
     url(r'^form/$', Form.as_view(), name='form'),
     url(r'^data/$', PaginatedData.as_view(), name='data'),
     url(r'^admin/', include(admin.site.urls)),

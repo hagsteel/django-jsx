@@ -47,15 +47,6 @@ var Nav = (function (_React$Component) {
                     null,
                     _react2["default"].createElement(
                         "a",
-                        { href: "/about/", onClick: this.props.handleClick },
-                        "About"
-                    )
-                ),
-                _react2["default"].createElement(
-                    "li",
-                    null,
-                    _react2["default"].createElement(
-                        "a",
                         { href: "/form/", onClick: this.props.handleClick },
                         "Form"
                     )

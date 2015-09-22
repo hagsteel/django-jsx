@@ -21,6 +21,7 @@ export default class Form extends React.Component {
     render() {
         return (
             <form method="post" onSubmit={this.submitForm}>
+                <h1>Form</h1>
                 <h4>{this.state.message}</h4>
                 <input type="text" name="foo" id="foo" />
                 <button type='submit'>Save</button>

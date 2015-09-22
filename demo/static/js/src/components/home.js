@@ -8,16 +8,11 @@ export default class Home extends React.Component {
         this.state = props;
     }
 
-    componentDidMount () {
-
-    }
-
     render () {
         return (
             <div>
                 <h1>Home</h1>
                 <p>This is the home view</p>
-                <p>Date: {this.state.data.date}</p>
                 <Nav handleClick={this.state.handleClick} />
             </div>
         )

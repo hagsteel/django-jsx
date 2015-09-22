@@ -1,26 +1,9 @@
-from django.core.urlresolvers import reverse
-from django.utils.timezone import now
-from django.views.generic import TemplateView, View
-from .api import DataListApi, get_paginated_data
-from .models import Data
+from django.views.generic import TemplateView
+from .api import get_paginated_data
 
 
 class Home(TemplateView):
     template_name = 'base.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['date'] = str(now())
-        return context
-
-
-class About(TemplateView):
-    template_name = 'base.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['data'] = [1, 2, 3]
-        return context
 
 
 class Form(TemplateView):
