@@ -28,11 +28,45 @@ class TestTemplateClient(TestCase):
         self.assertEqual(actual, expected)
 
     def test_clean_context(self):
+        """
+        Make sure reserved items are removed, like the request object
+        """
         context = {'request': 'remove this', 'foo': 'bar'}
         template_client.clean_context(context)
         self.assertDictEqual(context, {'foo': 'bar'})
 
     def test_clean_empty_context(self):
+        """
+        If `_clean_context` doesn't receive a dict, return an empty dict
+        """
         actual = template_client.clean_context(None)
         expected = {}
         self.assertDictEqual(actual, expected)
+
+    def test_fail_to_render_response(self):
+        """
+        Make sure an empty response is raised if no template was rendered
+        """
+        client = template_client.TemplateClient()
+        template_path = join(settings.TEMPLATE_DIR, 'missing-template.js')
+        with self.assertRaises(template_client.JsTemplateException):
+            client.render_template(template_path, {}, {})
+
+    def test_render_empty_template(self):
+        """
+        Make sure an empty response is raised if the template is empty
+        """
+        client = template_client.TemplateClient()
+        _rcv = client.receive
+
+        def empty_response(_):
+            return None
+
+        client.receive = empty_response
+
+        template_path = join(settings.TEMPLATE_DIR, 'empty-template.js')
+
+        with self.assertRaises(template_client.JsTemplateException):
+            client.render_template(template_path, {}, {})
+
+        client.receive = _rcv
