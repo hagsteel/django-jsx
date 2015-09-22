@@ -101,8 +101,13 @@ var Data = (function (_React$Component) {
                     'List of data'
                 ),
                 _react2['default'].createElement(_nav2['default'], { handleClick: this.props.handleClick }),
-                next,
                 prev,
+                _react2['default'].createElement(
+                    'span',
+                    null,
+                    ' | '
+                ),
+                next,
                 _react2['default'].createElement(
                     'ul',
                     null,

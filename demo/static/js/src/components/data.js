@@ -53,8 +53,9 @@ export default class Data extends React.Component {
             <div>
                 <h2>List of data</h2>
                 <Nav handleClick={this.props.handleClick} />
-                {next}
                 {prev}
+                <span>&nbsp;|&nbsp;</span>
+                {next}
                 <ul>
                     {dataList.results.map( (data, i) => {
                         return <li key={"p-" + i}>{data.name}</li>
