@@ -1,6 +1,5 @@
 from django.middleware.csrf import get_token
 from django.template.backends.base import BaseEngine
-from django.template.backends.utils import csrf_input
 from django.template.engine import _dirs_undefined
 
 from ..client.template_client import TemplateClient
