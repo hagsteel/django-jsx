@@ -2,10 +2,12 @@
 *.py[co]
 __pycache__
 MANIFEST
+dist/
 docs/_build/
 build/
 .coverage
 .tox
 .hypothesis
 *.sqlite3
+node_modules/
 npm-debug.log
