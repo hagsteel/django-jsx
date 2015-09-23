@@ -1,0 +1,21 @@
+# Editor temp files:
+*.swp
+*~
+
+# Sphinx docs:
+build
+
+# Editor files
+.project
+.idea/*
+__MACOSX/*
+.ropeproject
+.coverage
+
+# Static
+node_modules/
+npm-debug.log
+
+# Other
+.DS_Store
+coverage/
