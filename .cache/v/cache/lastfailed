@@ -1,1 +1,6 @@
-{}
+{
+  "tests/test_template.py::TestJsTemplate::test_render_template_with_request": true,
+  "tests/test_template.py::TestJsTemplate::test_render_template_without_request": true,
+  "tests/test_template_client.py::TestTemplateClient::test_render_template": true,
+  "tests/test_template_tag.py::TestLoader::test_render_template": true
+}
