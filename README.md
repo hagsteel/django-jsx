@@ -21,7 +21,7 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
     TEMPLATES = [
         ...
         {
-            'BACKEND': 'django_jsx.template.backend.JsxTemplates',
+            'BACKEND': 'django_jsx.template.backend.JsTemplates',
             'DIRS': [
                 join(BASE_DIR, 'static/js/src')
             ]

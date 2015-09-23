@@ -18,9 +18,9 @@ def pytest_configure():
 
         TEMPLATES = [
             {
-                'BACKEND': 'django_jsx.template.backend.JsxTemplates',
+                'BACKEND': 'django_jsx.template.backend.JsTemplates',
                 'DIRS': [
-                    join(BASE_DIR, 'templates')
+                    join(BASE_DIR, 'tests', 'templates')
                 ]
             }
         ],

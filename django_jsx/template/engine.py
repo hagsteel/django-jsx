@@ -13,6 +13,7 @@ class JsEngine(Engine):
             loaders = ['django_jsx.template.loaders.JsLoader']
             if app_dirs:
                 loaders += ['django.template.loaders.app_directories.Loader']
+                app_dirs = False
 
         super().__init__(dirs=dirs, app_dirs=app_dirs,
                  allowed_include_roots=allowed_include_roots, context_processors=context_processors,

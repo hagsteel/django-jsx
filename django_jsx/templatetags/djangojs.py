@@ -7,6 +7,10 @@ register = template.Library()
 loader = JsLoader(engine=None)
 
 
+class JsMissingTemplateDirException(Exception):
+    pass
+
+
 def _get_template_dirs():
     for t in settings.TEMPLATES:
         if t['BACKEND'] == 'django_jsx.template.backend.JsTemplates':
@@ -15,7 +19,10 @@ def _get_template_dirs():
 
 
 def _get_template_path(template_name):
-    template_path, _ = loader.load_template(template_name, template_dirs=_get_template_dirs())
+    template_dirs = _get_template_dirs()
+    if not template_dirs:
+        return None
+    template_path, _ = loader.load_template(template_name, template_dirs=template_dirs)
     return template_path
 
 
@@ -23,6 +30,8 @@ def _get_template_path(template_name):
 def include_js(context, template_name, **kwargs):
     request = context.get('request')
     template_path = _get_template_path(template_name)
+    if not template_path:
+        raise JsMissingTemplateDirException('No template directory')
     template = JsTemplate(template_path)
     template_context = context.flatten()
     template_context.update(kwargs)
