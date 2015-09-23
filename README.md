@@ -31,10 +31,11 @@ Add `'django_jsx.template.backend.JsxTemplates'` to the `TEMPLATES` setting
 
 ## Settings
 
-settings.DJANGO_ISOMORPHIC_AUTOSTART
+`DJANGO_ISOMORPHIC_AUTOSTART`
+Automatically start the template server when the app is loaded. Defaults to `True`.
 
 `DJANGO_ISOMORPHIC_RENDERER`
-Absolute path to an alternative renderer
+Absolute path to an alternative renderer.
 
 
 
