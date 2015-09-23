@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+# Build js
+cd javascript
+npm run build
+cd ..
+
 # Transpile all ES6 templates into ES5
 babel ./tests/template_src --out-dir ./tests/templates/
 
