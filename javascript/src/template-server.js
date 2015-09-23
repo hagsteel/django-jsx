@@ -5,14 +5,13 @@ const reactRendererPath = './renderer/react/react-template-renderer.js';
 
 
 const getOptions = () => {
-    if (process.argv.length < 3) {
-        return {}
-    }
-
     const options = {};
-    for (let i = 2; i < process.argv.length; i += 1) {
-        const opt = process.argv[i].split("=");
-        options[opt[0]] = opt[1];
+
+    if (process.argv.length < 3) {
+        for (let i = 2; i < process.argv.length; i += 1) {
+            const opt = process.argv[i].split("=");
+            options[opt[0]] = opt[1];
+        }
     }
 
     if (options.renderer === undefined) {
@@ -49,7 +48,7 @@ const serve = () => {
     try {
         // Delete stale socket
         fs.unlinkSync(socketPath);
-    } catch(ex) {
+    } catch (ex) {
         // Nothing to be done here
     }
 
@@ -57,8 +56,6 @@ const serve = () => {
         console.log('Template server running');
     });
 };
-
-
 
 
 serve();

@@ -10,7 +10,7 @@ class JsTemplates(BaseEngine):
     def __init__(self, params):
         params = params.copy()
         options = params.pop('OPTIONS').copy()
-        super().__init__(params)
+        super(JsTemplates, self).__init__(params)
         self.engine = JsEngine(self.dirs, self.app_dirs, **options)
 
     def get_template(self, template_name, dirs=_dirs_undefined):
