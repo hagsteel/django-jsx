@@ -26,7 +26,6 @@ def pytest_configure():
         ],
 
         DJANGO_ISOMORPHIC_AUTOSTART = False,
-        DJANGO_ISOMORPHIC_SOCKET_PATH = join(BASE_DIR, 'template-server.sock'),
         TEMPLATE_DIR = join(BASE_DIR, 'tests', 'templates'),
 
         MIDDLEWARE_CLASSES=(
