@@ -8,4 +8,5 @@ cd ..
 # Start the template server
 #node ./javascript/dist/template-server.js socketPath=./template-server.sock &
 
+pwd
 ./runtests.sh
