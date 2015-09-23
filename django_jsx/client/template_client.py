@@ -1,8 +1,9 @@
+from django.conf import settings
 import socket
 import json
 
 _exclude_from_context = ['request', 'csrf_input', 'DEFAULT_MESSAGE_LEVELS', 'False', 'True', 'None', 'view']
-server_address = '/tmp/template-server.sock'
+server_address = getattr(settings, 'DJANGO_ISOMORPHIC_SOCKET_PATH', '/tmp/template-server.sock')
 BUFFER_SIZE = 8192
 
 

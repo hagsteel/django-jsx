@@ -6,6 +6,7 @@ Use Django 1.8 if you want to use multiple template engines.
 
 It's important to know that the context is available on the client side, so putting sensitive data in the context is a bad idea.
 
+
 ## Why?
 
 There are few easy to use libraries for rendering JavaScript server side for Django.
@@ -37,6 +38,8 @@ Automatically start the template server when the app is loaded. Defaults to `Tru
 `DJANGO_ISOMORPHIC_RENDERER`
 Absolute path to an alternative renderer.
 
+`DJANGO_ISOMORPHIC_SOCKET_PATH`
+Path to the unix domain socket. Default is `/tmp/template-server.sock`
 
 
 ## Usage

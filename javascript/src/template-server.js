@@ -4,15 +4,19 @@ import fs from 'fs';
 const reactRendererPath = './renderer/react/react-template-renderer.js';
 
 
-const getOptions = () => {
-    const options = {};
-
-    if (process.argv.length < 3) {
+const getArgsAsDict = () => {
+    const commandArgs = {};
+    if (process.argv.length > 2) {
         for (let i = 2; i < process.argv.length; i += 1) {
             const opt = process.argv[i].split("=");
-            options[opt[0]] = opt[1];
+            commandArgs[opt[0]] = opt[1];
         }
     }
+    return commandArgs;
+};
+
+const getOptions = () => {
+    const options = getArgsAsDict();
 
     if (options.renderer === undefined) {
         options.renderer = require(reactRendererPath).renderer;
@@ -44,7 +48,13 @@ const server = net.createServer((socket) => {
 
 
 const serve = () => {
-    const socketPath = "/tmp/template-server.sock";
+    const cmdArgs = getArgsAsDict();
+    let socketPath = "/tmp/template-server.sock";
+
+    if (cmdArgs.socketPath) {
+        socketPath = cmdArgs.socketPath;
+    }
+
     try {
         // Delete stale socket
         fs.unlinkSync(socketPath);
@@ -53,7 +63,10 @@ const serve = () => {
     }
 
     server.listen(socketPath, () => {
+        console.log('=======================');
         console.log('Template server running');
+        console.log('Socket: ' + socketPath);
+        console.log('=======================');
     });
 };
 
